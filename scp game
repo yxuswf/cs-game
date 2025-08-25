@@ -1,0 +1,122 @@
+programa
+{
+	inclua biblioteca Util --> u
+	inclua biblioteca Texto --> t
+
+	funcao inicio()
+	{
+		inteiro escolhaCorredorOuPorta
+		caracter respostaInventario
+	
+escreva("                                                                   ..,,,,,,,,,,,,,,,,.                                                                     \n")
+escreva("                                                                  .%@&%%##########%%@@(.                                                                    \n")
+escreva("                                                                  ,&&(,............*%@&,                                                                    \n")
+escreva("                                                               .,/%@(,             .*#@#*.                                                                  \n")
+escreva("                                                            .,#@@%/,.               ..,(&@&/..                                                              \n")
+escreva("                                                         .*%@@(,.          ,//.         .,*#@@#,                                                            \n")
+escreva("                                                        ,#@%*,.          .,#@@/.           .*(&@/.                                                          \n")
+escreva("                                                      .(@%*.        .,*#%&@@@@@@&%(*..        ,/&&*.                                                        \n")
+escreva("                                                    .,&@/.       ,(&@@@@@@@@@@@@@@@@@@%*.       ,#@#.                                                       \n")
+escreva("                                                   .#@%*.      *%@@@@&(*,,*%@@(,.,/#@@@@@(.      ./@%/                                                      \n")
+escreva("                                                  .(@&*.     ./@@@@#,..   ,#@@/.   .,/%@@@&,      ,(@&*                                                     \n")
+escreva("                                                  *@#/.    .*#@@@(,      .*%@@(,      .*%@@@/,     ,(&&.                                                    \n")
+escreva("                                                 ,&&*.     *@@@&*.      .(@@@@@@*       ,(@@@&,    .,/@(.                                                   \n")
+escreva("                                                 /@(..    ,&@@@/.        .(@@@@/.        ,#@@@#.    .,%&,                                                   \n")
+escreva("                                                .#@/.     /@@@%,          ,#@@(.         ./&@@&,    .,#@*                                                   \n")
+escreva("                                                .%&*.    .(@@@(.           .**.           ,%@@@*    .,/@/                                                   \n")
+escreva("                                                .%&*.    .#@@@(.   ,//((###,  /###((/*.   ,%@@@*    ../@(                                                   \n")
+escreva("                                                .#@*.    ./@@@#,  .*&@@@@@/.  ,#@@@@@%,. .*&@@&,    .,(@/.                                                  \n")
+escreva("                                               .(@@*      ,&@@@/,*(&@@@@@/.    ,#@@@@@&(,*(@@@#.    ..#@#,.                                                 \n")
+escreva("                                             .(@@/,       ./@@@@@@@#/*/%,.      ./%**/%@@@@@@&*       .*%@&,                                                \n")
+escreva("                                              /@#,       .*%@@@@@#*.                  ./%@@@@@%*       .*%&,                                                \n")
+escreva("                                              .*@#,      .#&(/#@@@&/..              ,*#@@@&(/(%/      .*&&,                                                 \n")
+escreva("                                               ./@(,        .../&@@@*,.       ..,(&@@@@%,.         .*%&,                                                   \n")
+escreva("                                                 *@#,.          .*%@@@@@@&&%%%&&@@@@@@@(,           ,*&%,                                                   \n")
+escreva("                                                  ,&%/.            .,*#&@@@@@@@@@@%(,,.           .,#.                                                     \n")
+escreva("                                                   ,%@(,..,*,.          .........          ..,,...*%&(.                                                     \n")
+escreva("                                                    ,(@#%@@@@%*,                         .,/&@@@%@*.                                                       \n")
+escreva("                                                     .*(*,..*/&@&(*,.               ..,*#&@%*,,,*/#,                                                        \n")
+escreva("                                                              ..*(&@@&%(/*******/(#&@@@%/,.                                                                 \n")
+escreva("                                                                   ..,*//##%%%%#(/*,...                                                                   \n ")
+escreva("                                                                          ......        \n")
+
+
+
+			cadeia inventario[5] = {"Five-Seven", "Cartão de acesso Nível 2", "Espaço livre 3", "Espaço livre 4", "Espaço livre 5"}
+
+		cadeia texto = "                         \n"
+		escrevaMaquina(texto, 100)
+		
+		texto =  "Você acorda em uma cela de contenção destruída. O alarme vermelho ecoa pelos corredores, e a voz no alto-falante está distorcida: "
+		escrevaMaquina(texto, 20)
+		
+		texto = "“Protocolo 5K... todos os funcionários... eliminem testemunhas...”\n"
+		escrevaMaquina(texto, 20)
+
+		texto = "O cheiro de queimado e sangue fresco invade suas narinas. Gritos ecoam pelos corredores, misturados a disparos de fuzil.\n"
+		escrevaMaquina(texto, 20)
+
+		texto = "Você tenta se levantar. Seu uniforme está rasgado, a identificação do FBI ainda presa ao peito. Seu rádio chia com vozes cortadas:\n"
+		escrevaMaquina(texto, 20)
+
+		texto = "“…SCP-173… fuga confirmada… MTF hostis… ordens… atirem em todos…”\n"
+		escrevaMaquina(texto, 30)
+		
+		texto = "O corredor à frente está escuro. À sua esquerda, uma porta metálica parece entreaberta.\n"
+		escrevaMaquina(texto, 20)
+
+			escreva("\nVocê pode escolher entre duas opções: \n")
+			
+			escreva("\n1 - Seguir pelo corredor, mesmo sem luz\n2 - Entrar pela porta mágica e procurar recursos.\n")
+
+			escreva("\nQual sua escolha? ")
+			leia(escolhaCorredorOuPorta)
+
+			enquanto(escolhaCorredorOuPorta < 1 ou escolhaCorredorOuPorta > 2){
+				escreva("Informe uma opçao valida: ")
+				leia(escolhaCorredorOuPorta)		
+			}
+
+			escolha(escolhaCorredorOuPorta){
+				caso 1:
+				texto = "O corredor cheira a mofo e ferrugem. Você caminha lentamente, guiado apenas pelo alarme vermelho piscando atrás de você. Cada passo faz o eco parecer mais alto do que deveria.\n"
+				escrevaMaquina(texto, 20)
+
+				texto = "De repente, um estalo metálico às suas costas. Você se vira rápido, mas não vê nada… apenas escuridão.\n"
+				escrevaMaquina(texto, 20)
+
+				texto = "Seguindo em frente, seus pés encontram algo macio. Você olha para baixo: um corpo.\n"
+				escrevaMaquina(texto, 20)
+
+				texto = "Um guarda de segurança da Fundação está estirado no chão, o capacete rachado, o rosto pálido sem vida.\n"
+				escrevaMaquina(texto, 20)
+
+				texto = "Ao lado dele, uma pistola Five-Seven ainda na mão e um Cartão de Acesso Nível 2 preso ao cinto\n"
+				escrevaMaquina(texto, 20)
+
+				texto = "Você se equipou com a Five-Seven e o Cartão de Acesso Nível 2\n"
+				escrevaMaquina(texto, 20)
+
+				escreva("\nVocê quer ver seu inventário? (s/n) ")
+				leia(respostaInventario)
+
+					se(respostaInventario == 's' ou respostaInventario == 'S'){
+						para(inteiro i=0; i <= 4; i++){
+						escreva(inventario[i], "\n")
+						}			
+					}
+					se(respostaInventario == 'n' ou respostaInventario == 'N'){
+						escreva("Você escolheu não mostrar o seu inventário")
+					}
+					
+			}
+		
+	}
+		funcao escrevaMaquina(cadeia texto, inteiro velocidade){
+		
+		para(inteiro i=0; i < t.numero_caracteres(texto); i++){
+			escreva(t.obter_caracter(texto, i))
+			u.aguarde(velocidade)
+		}
+	}
+}

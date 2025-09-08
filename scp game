@@ -1,122 +1,153 @@
 programa
 {
-	inclua biblioteca Util --> u
 	inclua biblioteca Texto --> t
-
-	funcao inicio()
-	{
-		inteiro escolhaCorredorOuPorta
-		caracter respostaInventario
+	inclua biblioteca Util --> u
+	inteiro velocidade = 1
+	cadeia SeuTime, SeuMapa
 	
-escreva("                                                                   ..,,,,,,,,,,,,,,,,.                                                                     \n")
-escreva("                                                                  .%@&%%##########%%@@(.                                                                    \n")
-escreva("                                                                  ,&&(,............*%@&,                                                                    \n")
-escreva("                                                               .,/%@(,             .*#@#*.                                                                  \n")
-escreva("                                                            .,#@@%/,.               ..,(&@&/..                                                              \n")
-escreva("                                                         .*%@@(,.          ,//.         .,*#@@#,                                                            \n")
-escreva("                                                        ,#@%*,.          .,#@@/.           .*(&@/.                                                          \n")
-escreva("                                                      .(@%*.        .,*#%&@@@@@@&%(*..        ,/&&*.                                                        \n")
-escreva("                                                    .,&@/.       ,(&@@@@@@@@@@@@@@@@@@%*.       ,#@#.                                                       \n")
-escreva("                                                   .#@%*.      *%@@@@&(*,,*%@@(,.,/#@@@@@(.      ./@%/                                                      \n")
-escreva("                                                  .(@&*.     ./@@@@#,..   ,#@@/.   .,/%@@@&,      ,(@&*                                                     \n")
-escreva("                                                  *@#/.    .*#@@@(,      .*%@@(,      .*%@@@/,     ,(&&.                                                    \n")
-escreva("                                                 ,&&*.     *@@@&*.      .(@@@@@@*       ,(@@@&,    .,/@(.                                                   \n")
-escreva("                                                 /@(..    ,&@@@/.        .(@@@@/.        ,#@@@#.    .,%&,                                                   \n")
-escreva("                                                .#@/.     /@@@%,          ,#@@(.         ./&@@&,    .,#@*                                                   \n")
-escreva("                                                .%&*.    .(@@@(.           .**.           ,%@@@*    .,/@/                                                   \n")
-escreva("                                                .%&*.    .#@@@(.   ,//((###,  /###((/*.   ,%@@@*    ../@(                                                   \n")
-escreva("                                                .#@*.    ./@@@#,  .*&@@@@@/.  ,#@@@@@%,. .*&@@&,    .,(@/.                                                  \n")
-escreva("                                               .(@@*      ,&@@@/,*(&@@@@@/.    ,#@@@@@&(,*(@@@#.    ..#@#,.                                                 \n")
-escreva("                                             .(@@/,       ./@@@@@@@#/*/%,.      ./%**/%@@@@@@&*       .*%@&,                                                \n")
-escreva("                                              /@#,       .*%@@@@@#*.                  ./%@@@@@%*       .*%&,                                                \n")
-escreva("                                              .*@#,      .#&(/#@@@&/..              ,*#@@@&(/(%/      .*&&,                                                 \n")
-escreva("                                               ./@(,        .../&@@@*,.       ..,(&@@@@%,.         .*%&,                                                   \n")
-escreva("                                                 *@#,.          .*%@@@@@@&&%%%&&@@@@@@@(,           ,*&%,                                                   \n")
-escreva("                                                  ,&%/.            .,*#&@@@@@@@@@@%(,,.           .,#.                                                     \n")
-escreva("                                                   ,%@(,..,*,.          .........          ..,,...*%&(.                                                     \n")
-escreva("                                                    ,(@#%@@@@%*,                         .,/&@@@%@*.                                                       \n")
-escreva("                                                     .*(*,..*/&@&(*,.               ..,*#&@%*,,,*/#,                                                        \n")
-escreva("                                                              ..*(&@@&%(/*******/(#&@@@%/,.                                                                 \n")
-escreva("                                                                   ..,*//##%%%%#(/*,...                                                                   \n ")
-escreva("                                                                          ......        \n")
+	funcao inicio(){
+	
+escrevaMaquina("                                                                                                     \n", 0)
+escrevaMaquina("                                                                                                     \n", 0)
+escrevaMaquina("                                                 █████                                               \n", 0)
+escrevaMaquina("                                                ███████                                              \n", 0)
+escrevaMaquina("                                             █████████████████████                                   \n", 0)
+escrevaMaquina("                                            ██████████████████████████                               \n", 0)
+escrevaMaquina("                                           ██████████████████                                        \n", 0)
+escrevaMaquina("                                           ██████████████████                                        \n", 0)
+escrevaMaquina("                                          ██████████████████                                         \n", 0)
+escrevaMaquina("                                          █████████████ ██                                           \n", 0)
+escrevaMaquina("                                           ████████████                                              \n", 0)
+escrevaMaquina("                                          ████████████                                               \n", 0)
+escrevaMaquina("  ███████████████    ███████████████      ███████████        ████████████████   ███████████████ ████ \n", 0)
+escrevaMaquina(" █████████████████  █████████████████     ████████████      █████████████████   ████████████████     \n", 0)
+escrevaMaquina(" ██████             █████                 █████████████     ████               █████        ████     \n", 0)
+escrevaMaquina(" ██████             ████████████████      █████  ███████    ████  ████████████ █████        ████     \n", 0)
+escrevaMaquina(" ██████              ████████████████     █████   ███████   ████   ███████████ █████        ████     \n", 0)
+escrevaMaquina(" ██████                          ████    █████      █████   ████          ████ █████        ████     \n", 0)
+escrevaMaquina("  ████████████████  █████████████████   █████       █████   ██████████████████  ████████████████     \n", 0)
+escrevaMaquina("   ██████████████    ███████████████   █████        █████     ██████████████     ██████████████      \n", 0)
+escrevaMaquina("                                       ████          ████                                            \n", 0)
+escrevaMaquina("                                      ████           ████                                            \n", 0)
+escrevaMaquina("                                      ████          ███████                                          \n", 0)
+escrevaMaquina("                                       ███                                                           \n", 0)
 
 
+	escrevaMaquina(" \n", 1)
+	escrevaMaquina("Olá futuro fallen2.0!\n", velocidade)
+	escrevaMaquina("Você está no Counter Strike, um jogo foda de tiro que você provavelmente já ouviu falar e fingiu que joga todo dia.\n", velocidade)
+	escrevaMaquina("Neste jogo text game você pode escolher entre 2 mapas (apenas 2 por falta de tempo) que são o Mirage, e o Dust II.\n", velocidade)
+	escrevaMaquina("Ao informar o mapa que deseja jogar você poderá escolher entre TR (Terrorista) ou CT (Contra-Terrorista).\n", velocidade)
+	
+	cadeia iniciarOjogo
+	escreva("Deseja iniciar o jogo? (s/n)")
+	leia(iniciarOjogo)
 
-			cadeia inventario[5] = {"Five-Seven", "Cartão de acesso Nível 2", "Espaço livre 3", "Espaço livre 4", "Espaço livre 5"}
+	iniciarOjogo = t.caixa_baixa(iniciarOjogo)
 
-		cadeia texto = "                         \n"
-		escrevaMaquina(texto, 100)
+		enquanto(iniciarOjogo != "s" e iniciarOjogo != "n"){
+			escreva("Opção inválida, escolha entre 's' ou 'n'")
+			leia(iniciarOjogo)
+		}
 		
-		texto =  "Você acorda em uma cela de contenção destruída. O alarme vermelho ecoa pelos corredores, e a voz no alto-falante está distorcida: "
-		escrevaMaquina(texto, 20)
-		
-		texto = "“Protocolo 5K... todos os funcionários... eliminem testemunhas...”\n"
-		escrevaMaquina(texto, 20)
-
-		texto = "O cheiro de queimado e sangue fresco invade suas narinas. Gritos ecoam pelos corredores, misturados a disparos de fuzil.\n"
-		escrevaMaquina(texto, 20)
-
-		texto = "Você tenta se levantar. Seu uniforme está rasgado, a identificação do FBI ainda presa ao peito. Seu rádio chia com vozes cortadas:\n"
-		escrevaMaquina(texto, 20)
-
-		texto = "“…SCP-173… fuga confirmada… MTF hostis… ordens… atirem em todos…”\n"
-		escrevaMaquina(texto, 30)
-		
-		texto = "O corredor à frente está escuro. À sua esquerda, uma porta metálica parece entreaberta.\n"
-		escrevaMaquina(texto, 20)
-
-			escreva("\nVocê pode escolher entre duas opções: \n")
-			
-			escreva("\n1 - Seguir pelo corredor, mesmo sem luz\n2 - Entrar pela porta mágica e procurar recursos.\n")
-
-			escreva("\nQual sua escolha? ")
-			leia(escolhaCorredorOuPorta)
-
-			enquanto(escolhaCorredorOuPorta < 1 ou escolhaCorredorOuPorta > 2){
-				escreva("Informe uma opçao valida: ")
-				leia(escolhaCorredorOuPorta)		
-			}
-
-			escolha(escolhaCorredorOuPorta){
-				caso 1:
-				texto = "O corredor cheira a mofo e ferrugem. Você caminha lentamente, guiado apenas pelo alarme vermelho piscando atrás de você. Cada passo faz o eco parecer mais alto do que deveria.\n"
-				escrevaMaquina(texto, 20)
-
-				texto = "De repente, um estalo metálico às suas costas. Você se vira rápido, mas não vê nada… apenas escuridão.\n"
-				escrevaMaquina(texto, 20)
-
-				texto = "Seguindo em frente, seus pés encontram algo macio. Você olha para baixo: um corpo.\n"
-				escrevaMaquina(texto, 20)
-
-				texto = "Um guarda de segurança da Fundação está estirado no chão, o capacete rachado, o rosto pálido sem vida.\n"
-				escrevaMaquina(texto, 20)
-
-				texto = "Ao lado dele, uma pistola Five-Seven ainda na mão e um Cartão de Acesso Nível 2 preso ao cinto\n"
-				escrevaMaquina(texto, 20)
-
-				texto = "Você se equipou com a Five-Seven e o Cartão de Acesso Nível 2\n"
-				escrevaMaquina(texto, 20)
-
-				escreva("\nVocê quer ver seu inventário? (s/n) ")
-				leia(respostaInventario)
-
-					se(respostaInventario == 's' ou respostaInventario == 'S'){
-						para(inteiro i=0; i <= 4; i++){
-						escreva(inventario[i], "\n")
-						}			
-					}
-					se(respostaInventario == 'n' ou respostaInventario == 'N'){
-						escreva("Você escolheu não mostrar o seu inventário")
-					}
-					
-			}
-		
+		se(iniciarOjogo == "s"){
+			escolhaMapa()
+		} 
+		senao se(iniciarOjogo == "n"){
+			escreva("Ok, deletando 'system32'")
+		}
 	}
-		funcao escrevaMaquina(cadeia texto, inteiro velocidade){
-		
+	
+	funcao escrevaMaquina(cadeia texto, inteiro velocidade){
 		para(inteiro i=0; i < t.numero_caracteres(texto); i++){
 			escreva(t.obter_caracter(texto, i))
 			u.aguarde(velocidade)
 		}
 	}
+
+     // FUNÇÃO PARA A ESCOLHA DE TIMES
+	funcao escolhaDeTime(){
+escreva("                       ░░░░░░░░░░                                                                                              ██████████                        \n")
+escreva("                   ▒░░░░░░▒▒▒▓▓▒▒▒░░░░░░▒                                                                                ███████▓▒▒▒▒▒▓███████                   \n")
+escreva("               ░░░░▒▒██████████████████▓▒░░░░                                                                        ████▓▒░░░░░░░░░░░░░░░░░░▒▓████              \n")
+escreva("            ▒░░░▓█████▓▒▓▓█████████████████▓░░░░                                                                  ███▓░░░░░░░░░░░░░▓░░░░░░░░░░░░░▒███            \n")
+escreva("          ▒░░▒███████▒░░░░░░▒▒░░░░░▓▓▒▓███████▒░░                                                               ███▒░░░░░░░░░░░░▒█████▒░░░░░░░░░░░░░███          \n")
+escreva("        ░░░▒███████████▒▓▓▒▒▒▒░▒█▒░▒▒▒▒█████████▒░░░                                                          ███▒░░░░░░▒░░░░░░░░▒███▒░░░░░░░░░░░░░░░░███        \n")
+escreva("       ░░░█████████████▓██▒░▒▒▒▓██▒▓█▒████████████▒░░                                                        ██▓░░░░░░▓██▓░░░░░░░░░░░░░░░░░░░▓██▓░░░░░░▒███      \n")
+escreva("      ░░▒███████████████▓▓░░▓▓▒██████▒█████████████▒░░                                                      ██░░░░░░░░▓▓▓▒░░░░░░░░░░░░░░░░░░░▒▓▓▒░░░░░░░░███     \n")
+escreva("     ░░▓█████▒████████████████████████████████▒▓████▓░░                                                    ██░░▒█▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓█▓░░▓██    \n")
+escreva("    ░░▓████████████░░████████▒░████████▒░▓███████████▓░░                                                  ██░░░░░░░░░░░░░░░░░░░░▒▓▒░▒▒▒░░░░░░░░░░░░░░░░░▒░░▒██   \n")
+escreva("   ▒░▒██████░▒████████████▒░░░░░░▒████████████▒░▓█████▒░░                                                ██░▓▓▓░░░░░░░░░░░░░░░░░▓█▓▓▓██░░░░░░░░░░░░░░░░░▒▓▒░██   \n")
+escreva("   ░░█████████▒░▒████▒▒█████░░░░▓████▓░████▓░▒█████████░░                                               ██▒░░░▓▓▒░░░░░░░░░░░░░░░▒█▒▓▓██▒░░░░░░░░░░░░░░░▓▓▒░░▒██  \n")
+escreva("  ░░▒█████▓▓█████▓▒▒▒░░████▓▒▓▓▒▓████▒░░▒▒▒████▓▓▓█████▓░░                                              ██░░░░░░░▒███▓▒░░░░░░░░░▒█████▓▒░░░░░░░░▒▓███▒░░░░░░░███ \n")
+escreva("  ░░█████▒▓███▓▒▒▓█▓▒░░░░▒████████▒░░░░▒▓█▓▒▒▓███▓▒████▓░░                                              █▓░░░░░░░░░░▒████▓▒░░░░░▒▓▓▒▒▒░░░░░░▒▓████▓░░░░░░░░░░▒██ \n")
+escreva(" ▒░░████▓▓██▓▒▓███▓░█▓░░░░░░▒▓█▒░░░░░░▒▓▒████▒▒███▓▓████▒░                                              █▒░▒░░░░░░░░░░▒▓█████▒░░░░░░░░░░░▒█████▓▒░░░░░░░░░░░░░██ \n")
+escreva(" ▒░░█████▓▓▓▓▓▓▓▓▓██▒██▓▒░░░░░░░░░░░▒██▒██▓▓▓▓▓▓▓▓▓█████▒░                                             ██▒░░█▓▒░░░░░░░░░░▒▓████▓▒░░░░░▒▓████▓▒░░░░░░░░░░░▓▓░░░██ \n")
+escreva(" ░░░█████▓█████▓▓▓▓▓░░▒█▓░░░░░░░░░░▒█▓░░▒▓▓▓▓█████▓█████▒░                                             ██▒░░░██▓▓▓▒░░░░░░░░░▓█████▓▓▓█████▓░░░░░░░░░▒▓▓███▒░░░██ \n")
+escreva("  ░░███████████▒▓█▒░░▒░░░░░░░▒▓░░░░░░░░▒░▓█▓▓███████████░░                                              █▓░░░░▓███▓▓▓▓█████▒▓██████████████░██████▓▓▓██▓▓░░░░▒██ \n")
+escreva("  ░░▒███████▓▓▓▓█▓░░░░░░░░░░░░░░░░░░░░░░░░██▓▓▓▓███████▓░░                                              ██░░░░░░▓████▓▓▓▓█████████████████████▓▓▓▓████▓░░░░░░▓██ \n")
+escreva("  ░░░█████████▓▓▒░░░░░░░▒█▒░░░░░░░█▓░░░░░░▒▒▓██████████▒░                                               ██▒░░░░░░░░░▓▓████████████████████████████▓░░░░░░░░░░██  \n")
+escreva("   ░░▓███████▓░░░░░▓▒░░░░▒▓░░░░░░▓▓▒░░░▒▒░░░░░▓███████▓░░                                                ██░░░░░░░░░░░░░▒██████████▓██████████▓░░░░░░░░░░░░░▓██  \n")
+escreva("    ░░▓███▓░░░░░░▓███▓░░▓█▒░░░░░░▒██▒░░████░░░░░░▓████░░                                                 ███░░░░░░░░░░░▒████▓▒▓██▓▓▓▓▓██▓▒▒████▒░░░░░░░░░░░▒██   \n")
+escreva("     ░░██▒░░░░░░█████▒░░▓███████████▒░░█████▒░░░░░░█▓░░                                                    ██▓░░░░░░▒▓█████░░░░██░░░░▒██▒▒░░▓████▓▒░░░░░░░▒██    \n")
+escreva("      ░░▓█▒░░░▒██████▒░░▓███████████▒░░██████▒░░░░█▓░░                                                        ██░░░░▓██████▒░░░░░░░░░░░░░░░░░▒██████▓░░░░▓██     \n")
+escreva("       ░░▒█▓░▒████████████████████████████████▒░▓█▒░░                                                         ███▒░░░▓███▓░░░░░░░░░░░░░░░░░░░░░▓███▒░░░░███      \n")
+escreva("        ░░░▓████████████████████████████████████▓░░░                                                            ███░░░▒█░░░░░░░░░░░░░░░░░░░░░░░░░█▒░░░▓██        \n")
+escreva("          ░░░▓████████████████████████████████▓░░░                                                                ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓███         \n")
+escreva("            ░░░▒▓██████████████████████████▓▒░░░                                                                  ███▒░░░░░░░░░░░░░░░░░░░░░░░░░░░▒████           \n")
+escreva("              ░░░░░▒████████████████████▒░░░░░                                                                      ████▓▒░░░░░░░░░░░░░░░░░░░░▓████              \n")
+escreva("                  ▒░░░░░░▒▓██████▓▒▒░░░░░▒                                                                              ██████▓▒░░░░░░░▒▓██████                  \n")
+escreva("                       ▒░░░░░░░░░░░░▒                                                                                         █████████████   \n")
+
+	cadeia trOUct
+	escrevaMaquina("\nEscolha entre Terrorista ou Contra-Terrorista (TR/CT)\n", velocidade)
+	leia(trOUct)
+
+	trOUct = t.caixa_baixa(trOUct)
+	
+		enquanto(trOUct != "tr" e trOUct != "ct"){
+			escreva("Digite ", "'tr' ou 'ct'")
+			leia(trOUct)
+		}
+		
+		se(trOUct == "tr"){
+			escrevaMaquina("Time escolhido: Terrorista", velocidade)
+			SeuTime = "Terrorista"
+		}
+		se(trOUct == "ct"){
+			escrevaMaquina("Time escolhido: Terrorista", velocidade)
+			SeuTime = "Contra-Terrorista"
+		}
+	
+	}
+
+	// FUNÇÃO PARA A ESCOLHA DO MAPA
+	funcao escolhaMapa(){
+		caracter escolhaDeMapa
+		escrevaMaquina("Qual mapa deseja jogar?:\n1 - Mirage\n2 - Dust II\n", velocidade)
+		leia(escolhaDeMapa)
+
+			enquanto(escolhaDeMapa != '1' e escolhaDeMapa != '2'){
+				escreva("Mapa escolhido inválido, escolha entre:\n1 - Mirage\n2 - Dust II")
+			}
+		
+			se(escolhaDeMapa == '1'){
+				escrevaMaquina("Mapa escolhido: Mirage\n", velocidade)
+				SeuMapa = "Mirage"
+				mirage()
+			}
+			senao se(escolhaDeMapa == '2'){
+				escrevaMaquina("Mapa escolhido: Dust II\n", velocidade)
+				SeuMapa = "Dust II"
+			}
+			
+		escolhaDeTime()
+	}
+
+	funcao mirage(){
+		se(SeuTime == "Terrorista"){
+			
+		}
+	}
+	
 }

@@ -146,7 +146,13 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 
 	funcao mirage(){
 		se(SeuTime == "Terrorista"){
-			
+			cadeia ondeRushar
+
+			 escrevaMaquina("Vai rushar A, MID no fds ou B já metendo o loko? ", velocidade)
+			 leia(ondeRushar)
+			 	ondeRushar = t.caixa_baixa(ondeRushar)
+			 	se(ondeRushar == "A"){
+
 		}
 	}
 	

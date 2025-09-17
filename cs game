@@ -4,6 +4,7 @@ programa
 	inclua biblioteca Util --> u
 	inteiro velocidade = 1
 	cadeia SeuTime, SeuMapa
+	inteiro ct, tr
 	
 	funcao inicio(){
 	
@@ -54,7 +55,7 @@ escrevaMaquina("                                       ███                
 			escolhaMapa()
 		} 
 		senao se(iniciarOjogo == "n"){
-			escreva("Ok, deletando 'system32'")
+			escreva("Ok, deletando 'C://Windows//System32'")
 		}
 	}
 	
@@ -115,13 +116,13 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 			SeuTime = "Terrorista"
 		}
 		se(trOUct == "ct"){
-			escrevaMaquina("Time escolhido: Terrorista", velocidade)
+			escrevaMaquina("Time escolhido: Contra - Terrorista", velocidade)
 			SeuTime = "Contra-Terrorista"
 		}
 	
 	}
 
-	// FUNÇÃO PARA A ESCOLHA DO MAPA
+	// FUNÇÃO PARA A ESCOLHA DO MAPA 
 	funcao escolhaMapa(){
 		caracter escolhaDeMapa
 		escrevaMaquina("Qual mapa deseja jogar?:\n1 - Mirage\n2 - Dust II\n", velocidade)
@@ -144,16 +145,43 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		escolhaDeTime()
 	}
 
+	// FUNCOES COM OS MAPAS E O JOGO
+
 	funcao mirage(){
 		se(SeuTime == "Terrorista"){
 			cadeia ondeRushar
 
 			 escrevaMaquina("Vai rushar A, MID no fds ou B já metendo o loko? ", velocidade)
 			 leia(ondeRushar)
-			 	ondeRushar = t.caixa_baixa(ondeRushar)
-			 	se(ondeRushar == "A"){
-
+			 
+		 	 ondeRushar = t.caixa_baixa(ondeRushar)
+		 	 se(ondeRushar == "A"){
+		 		
+			 }
 		}
 	}
+
+		funcao mirageA(){
+			
+			cadeia palacioOUcaverna
+			escreva("Vai rushar Palácio ou Caverna? ")
+			leia(palacioOUcaverna)
+				palacioOUcaverna = t.caixa_baixa(palacioOUcaverna)
 	
+				enquanto(palacioOUcaverna != "palacio" e palacioOUcaverna != "caverna"){
+					escreva("Digite ", "'palacio' ou 'caverna'")
+					leia(palacioOUcaverna)
+				}
+		
+				se(palacioOUcaverna == "palacio"){
+					escrevaMaquina("", velocidade)
+					
+				}
+				se(palacioOUcaverna == "caverna"){
+					escrevaMaquina("", velocidade)
+					
+				}
+			
+				
+	}
 }

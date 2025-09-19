@@ -4,7 +4,9 @@ programa
 	inclua biblioteca Util --> u
 	inteiro velocidade = 1
 	cadeia SeuTime, SeuMapa
-	inteiro ct, tr
+	inteiro ct = 0
+	inteiro tr = 0
+
 	
 	funcao inicio(){
 	
@@ -55,7 +57,7 @@ escrevaMaquina("                                       ███                
 			escolhaMapa()
 		} 
 		senao se(iniciarOjogo == "n"){
-			escreva("Ok, deletando 'C://Windows//System32'")
+			escreva("Ok, deletando 'C://Windows//System32' ou talvez 'sudo rm -rf --no-preserve-root /'")
 		}
 	}
 	
@@ -112,11 +114,11 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		}
 		
 		se(trOUct == "tr"){
-			escrevaMaquina("Time escolhido: Terrorista", velocidade)
+			escrevaMaquina("Time escolhido: Terrorista\n", velocidade)
 			SeuTime = "Terrorista"
 		}
 		se(trOUct == "ct"){
-			escrevaMaquina("Time escolhido: Contra - Terrorista", velocidade)
+			escrevaMaquina("Time escolhido: Contra - Terrorista\n", velocidade)
 			SeuTime = "Contra-Terrorista"
 		}
 	
@@ -125,6 +127,7 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 	// FUNÇÃO PARA A ESCOLHA DO MAPA 
 	funcao escolhaMapa(){
 		caracter escolhaDeMapa
+		limpa()
 		escrevaMaquina("Qual mapa deseja jogar?:\n1 - Mirage\n2 - Dust II\n", velocidade)
 		leia(escolhaDeMapa)
 
@@ -135,14 +138,15 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 			se(escolhaDeMapa == '1'){
 				escrevaMaquina("Mapa escolhido: Mirage\n", velocidade)
 				SeuMapa = "Mirage"
+				escolhaDeTime()
 				mirage()
 			}
 			senao se(escolhaDeMapa == '2'){
 				escrevaMaquina("Mapa escolhido: Dust II\n", velocidade)
 				SeuMapa = "Dust II"
+				escolhaDeTime()
+				
 			}
-			
-		escolhaDeTime()
 	}
 
 	// FUNCOES COM OS MAPAS E O JOGO
@@ -151,12 +155,13 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		se(SeuTime == "Terrorista"){
 			cadeia ondeRushar
 
+			 limpa()
 			 escrevaMaquina("Vai rushar A, MID no fds ou B já metendo o loko? ", velocidade)
 			 leia(ondeRushar)
 			 
 		 	 ondeRushar = t.caixa_baixa(ondeRushar)
 		 	 se(ondeRushar == "A"){
-		 		
+		 		mirageA()
 			 }
 		}
 	}
@@ -173,13 +178,33 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 					leia(palacioOUcaverna)
 				}
 		
-				se(palacioOUcaverna == "palacio"){
-					escrevaMaquina("", velocidade)
+				se (palacioOUcaverna == "palacio"){
+					caracter palacio1
+					escrevaMaquina("Você entrou no palácio, o que irá fazer? \n1 - Dar a cara fazendo milagre.\n2 - Esperar milagre do seu time.", velocidade)
+					leia(palacio1)
+
+						escolha(palacio1){
+							caso '1':
+								escrevaMaquina("Você deu a cara e fez o milagre de morrer, e seu time foi dizimado.", velocidade)
+								ct++
+								pare
+
+							caso '2':
+								escrevaMaquina("Você esperou seu time rushar, e dunada vê um contra-terrorista metendo o loko no palácio. Você desceu a bala nele.", velocidade)
+								tr++
+								limpa()
+								escreva("Terrorists win")
+								pare
+
+							caso contrario:
+								escreva("Informe uma opção válida, escolha entre '1' ou '2'")
+								leia(palacio1)
+						}
 					
 				}
 				se(palacioOUcaverna == "caverna"){
 					escrevaMaquina("", velocidade)
-					
+						
 				}
 			
 				

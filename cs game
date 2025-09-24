@@ -104,7 +104,7 @@ escreva("                  ▒░░░░░░▒▓██████▓▒�
 escreva("                       ▒░░░░░░░░░░░░▒                                                                                         █████████████   \n")
 
 	cadeia trOUct
-	escrevaMaquina("\nEscolha entre Terrorista ou Contra-Terrorista (TR/CT)\n ", velocidade)
+	escrevaMaquina("\nEscolha entre Terrorista ou Contra-Terrorista (TR/CT) ", velocidade)
 	leia(trOUct)
 
 	trOUct = t.caixa_baixa(trOUct)
@@ -129,7 +129,7 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 	funcao escolhaMapa(){
 		caracter escolhaDeMapa
 		limpa()
-		escrevaMaquina("Qual mapa deseja jogar?:\n1 - Mirage\n2 - Dust II\n ", velocidade)
+		escrevaMaquina("Qual mapa deseja jogar?:\n1 - Mirage\n2 - Dust II\n", velocidade)
 		leia(escolhaDeMapa)
 
 			enquanto(escolhaDeMapa != '1' e escolhaDeMapa != '2'){
@@ -151,11 +151,16 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 			}
 	}
 
+	funcao placar(){
+		escreva("\n\nPLACAR DO JOGO:\n\nTERRORISTA: ", tr, "\nCONTRA-TERRORISTA: ", ct)
+		
+	}
 	// FUNCOES COM OS MAPAS E O JOGO
 
 	funcao mirage(){
 		se(SeuTime == "Terrorista"){
 			cadeia ondeRushar
+			caracter escolha1
 
 			 limpa()
 			 escrevaMaquina("Vai rushar A, MID no fds ou B já metendo o loko? ", velocidade)
@@ -176,24 +181,30 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 				leia(palacioOUcaverna)
 		 			}
 		 			
+		 	//PALACIOOOO
+		 		
 		 			se(palacioOUcaverna == "palacio"){
 		 					se(rodada == 0){
-		 						
+		 						escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Vai dar a cara e fazer milagre\n2 - Ficar no palácio cravado esperando com fé.\n", velocidade)
+		 						leia(escolha1)
+		 							se(escolha1 == '1'){
+		 								escrevaMaquina("Você deu a cara e fez o milagre de morrer. Seu time foi dizimado.", velocidade)
+		 									ct++
+		 									escrevaMaquina("\nCounter-Terrorist Win!", velocidade)
+		 									placar()
+		 									rodada++
+		 							}
+
+		 							se(escolha1 == '2'){
+		 								escrevaMaquina("Você ficou esperando cravado, enquanto isso seu time rushou pressionando os inimigos, dunada você vê um Contra-Terrosrista metendo o loko entrando no palácio. Você dessceu a bala nele. \nE pelo o visto, seu time conseguiu limpar o resto do time inimigo também. (eh os guri pae)", velocidade)
+		 									tr++
+		 									escrevaMaquina("\nTerrorist Win!", velocidade)
+		 									placar()
+		 									rodada++
+		 							}
 		 					}
 		 			}
 			 }
 		}
 	}
 }
-/* $$$ Portugol Studio $$$ 
- * 
- * Esta seção do arquivo guarda informações do Portugol Studio.
- * Você pode apagá-la se estiver utilizando outro editor.
- * 
- * @POSICAO-CURSOR = 11867; 
- * @DOBRAMENTO-CODIGO = [11, 64, 72, 128];
- * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
- * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
- * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
- */

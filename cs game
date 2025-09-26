@@ -3,10 +3,11 @@ programa
 	inclua biblioteca Texto --> t
 	inclua biblioteca Util --> u
 	inteiro velocidade = 1
-	cadeia SeuTime, SeuMapa
+	cadeia SeuTime, SeuMapa, SuaArma
 	inteiro ct = 0
 	inteiro tr = 0
 	inteiro rodada = 0
+	inteiro dinheiro = 0
 
 	
 	funcao inicio(){
@@ -152,8 +153,72 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 	}
 
 	funcao placar(){
-		escreva("\n\nPLACAR DO JOGO:\n\nTERRORISTA: ", tr, "\nCONTRA-TERRORISTA: ", ct)
+		escreva("\n\nPLACAR DO JOGO:\n\nTERRORISTA: ", tr, "\nCONTRA-TERRORISTA: ", ct, "\n")
 		
+	}
+
+	funcao loja(){
+		escreva("\nEscolha sua arma, você tem: ", dinheiro, " , escolha com sabedoria.\n")
+
+		se(SeuTime == "Terrorista"){
+			inteiro galilsar = 1800
+			inteiro ak47 = 2400
+			inteiro sg553 = 3000
+			inteiro scout = 1700
+			inteiro awp = 4750
+			escreva("-------------------------\n")
+			escreva("     BANCA DO SEU ZÉ   \n\n")
+			escreva("GALIL SAR - $1800        \n")
+			escreva("AK-47 - $2400            \n")
+			escreva("SG 553 - $3000           \n")
+			escreva("SCOUT - $1700            \n")
+			escreva("AWP - $4750              \n")
+			escreva("Sair - $0                \n")
+			escreva("_________________________\n")
+
+			inteiro precoArma
+			escrevaMaquina("\nDigite o preço da arma que deseja comprar: ", velocidade)
+			leia(precoArma)
+			
+				se(precoArma == 1800 e dinheiro > 1800){
+					SuaArma = "GALIL SAR"
+					escrevaMaquina("\nArma adquirida: Galil Sar.", velocidade)
+					dinheiro = dinheiro - 1800
+				}
+				
+				se(precoArma == 2400 e dinheiro > 2400){
+					SuaArma = "AK-47"
+					escrevaMaquina("\nArma adquirida: AK-47.", velocidade)
+					dinheiro = dinheiro - 2400
+				}
+
+				se(precoArma == 3000 e dinheiro > 3000){
+					SuaArma = "SG 553"
+					escrevaMaquina("\nArma adquirida: SG 553.", velocidade)
+					dinheiro = dinheiro - 3000
+				}
+
+				se(precoArma == 1700 e dinheiro > 1700){
+					SuaArma = "SCOUT"
+					escrevaMaquina("\nArma adquirida: SCOUT.", velocidade)
+					dinheiro = dinheiro - 1700
+				}
+
+				se(precoArma == 4750 e dinheiro > 4750){
+					SuaArma = "AWP"
+					escrevaMaquina("\nArma adquirida: AWP.", velocidade)
+					dinheiro = dinheiro - 4750
+				}
+
+				se(precoArma == 0){
+					escrevaMaquina("Fechando a loja...\n", velocidade)
+				}
+
+					enquanto(precoArma != 1800 e precoArma != 2400 e precoArma != 3000 e precoArma != 1700 e precoArma != 4750 e precoArma != 0){
+				 	escrevaMaquina("Opção inválida, digite o preço das armas na tabela acima. ", velocidade)
+				 	leia(precoArma)
+			}
+		}
 	}
 	// FUNCOES COM OS MAPAS E O JOGO
 
@@ -185,14 +250,17 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 		
 		 			se(palacioOUcaverna == "palacio"){
 		 					se(rodada == 0){
+		 						limpa()
 		 						escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Vai dar a cara e fazer milagre\n2 - Ficar no palácio cravado esperando com fé.\n", velocidade)
 		 						leia(escolha1)
 		 							se(escolha1 == '1'){
 		 								escrevaMaquina("Você deu a cara e fez o milagre de morrer. Seu time foi dizimado.", velocidade)
 		 									ct++
-		 									escrevaMaquina("\nCounter-Terrorist Win!", velocidade)
+		 									escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
 		 									placar()
 		 									rodada++
+		 									dinheiro = dinheiro + 2400
+		 									loja()
 		 							}
 
 		 							se(escolha1 == '2'){
@@ -201,6 +269,8 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 									escrevaMaquina("\nTerrorist Win!", velocidade)
 		 									placar()
 		 									rodada++
+		 									dinheiro = dinheiro + 2700
+		 									loja()
 		 							}
 		 					}
 		 			}
@@ -208,5 +278,3 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		}
 	}
 }
-
-https://pt.namemc.com/skin/65752b972402d79a

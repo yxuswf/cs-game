@@ -69,7 +69,7 @@ escrevaMaquina("                                       ███                
 			u.aguarde(velocidade)
 		}
 	}
-
+	
      // FUNÇÃO PARA A ESCOLHA DE TIMES
 	funcao escolhaDeTime(){
 escreva("                       ░░░░░░░░░░                                                                                              ██████████                        \n")
@@ -246,9 +246,10 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 				leia(palacioOUcaverna)
 		 			}
 		 			
-		 	//PALACIOOOO
+//PALACIOOOO
 		 		
 		 			se(palacioOUcaverna == "palacio"){
+		 				//ROUND 1 PALACIO
 		 					se(rodada == 0){
 		 						limpa()
 		 						escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Vai dar a cara e fazer milagre\n2 - Ficar no palácio cravado esperando com fé.\n", velocidade)
@@ -261,6 +262,7 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 									rodada++
 		 									dinheiro = dinheiro + 2400
 		 									loja()
+		 									mirage()
 		 							}
 
 		 							se(escolha1 == '2'){
@@ -271,7 +273,47 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 									rodada++
 		 									dinheiro = dinheiro + 2700
 		 									loja()
+		 									mirage()
 		 							}
+		 					}
+
+						//ROUND 2 PALACIO
+		 					se(rodada == 1){
+		 					limpa()
+		 					escrevaMaquina("Você escolheu rushar palácio denovo. Escolha seu próximo passo:\n1 - Vai ficar marotado esprando o inimigo.\n2 - Tentar fazer a jogada do século. (rushar seco)\n", velocidade)
+		 					leia(escolha1)
+		 						se(escolha1 == '1'){
+		 							escrevaMaquina("Você ficou marotado esperando o inimigo pulou igual doido e você só clicou 1 vez e desceu a bala com a sua qual seu próximo passo?\n1 - Esperar mais um pouco para garantir o round.\n2 - Meter o loko.", velocidade)
+		 							leia(escolha1)
+		 								se(escolha1 == '1'){
+		 									escrevaMaquina("\nVocê esperou mais um pouco e garantiu o round, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.", velocidade)
+		 										tr++
+		 										escrevaMaquina("\n\nTerrorist Win!", velocidade)
+		 										placar()
+		 										rodada++
+		 										dinheiro = dinheiro + 2700
+		 										loja()
+		 								}
+		 								se(escolha1 == '2'){
+		 									escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'", velocidade)
+		 										ct++
+				 								escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+				 								placar()
+				 								rodada++
+				 								dinheiro = dinheiro + 2400
+				 								loja()
+		 								}
+		 						}
+
+		 						se(escolha1 == '2'){
+		 							escrevaMaquina("\nVocê deu a cara e fez a jogada do século! Matou 2 já de cara e depois tomou uma de Deagle!", velocidade)
+		 									ct++
+				 							escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+				 							placar()
+				 							rodada++
+				 							dinheiro = dinheiro + 2400
+				 							loja()
+		 						}
 		 					}
 		 			}
 			 }

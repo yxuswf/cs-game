@@ -211,7 +211,7 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 				}
 
 				se(precoArma == 0){
-					escrevaMaquina("Fechando a loja...\n", velocidade)
+					escrevaMaquina("\nFechando a loja...\n", velocidade)
 				}
 
 					enquanto(precoArma != 1800 e precoArma != 2400 e precoArma != 3000 e precoArma != 1700 e precoArma != 4750 e precoArma != 0){

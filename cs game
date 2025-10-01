@@ -292,22 +292,22 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 				}
 
 				se(precoArma == 1800 e dinheiro >= 1800){
-					SuaArma = "GALIL SAR"
-					escrevaMaquina("\nArma adquirida: Galil Sar.", velocidade)
+					SuaArma = "FAMAS F1"
+					escrevaMaquina("\nArma adquirida: FAMAS F1.", velocidade)
 					dinheiro = dinheiro - 1800
 					escrevaMaquina(" \n", 50)
 				}
 				
 				se(precoArma == 2400 e dinheiro >= 2400){
-					SuaArma = "AK-47"
-					escrevaMaquina("\nArma adquirida: AK-47.", velocidade)
+					SuaArma = "M4A1-S"
+					escrevaMaquina("\nArma adquirida: M4A1-S.", velocidade)
 					dinheiro = dinheiro - 2400
 					escrevaMaquina(" \n", 50)
 				}
 
 				se(precoArma == 3000 e dinheiro >= 3000){
-					SuaArma = "SG 553"
-					escrevaMaquina("\nArma adquirida: SG 553.", velocidade)
+					SuaArma = "AUG 43"
+					escrevaMaquina("\nArma adquirida: AUG 43.", velocidade)
 					dinheiro = dinheiro - 3000
 					escrevaMaquina(" \n", 50)
 				}

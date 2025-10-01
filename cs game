@@ -2,8 +2,9 @@ programa
 {
 	inclua biblioteca Texto --> t
 	inclua biblioteca Util --> u
-	inteiro velocidade = 1
-	cadeia SeuTime, SeuMapa, SuaArma
+	inteiro velocidade = 25
+	cadeia SeuTime, SeuMapa
+	cadeia SuaArma = "Pistola"
 	caracter escolha1 = '0'
 	inteiro ct = 0
 	inteiro tr = 0
@@ -13,6 +14,43 @@ programa
 	
 	funcao inicio(){
 	
+	escrevaMaquina("Olá futuro fallen2.0!\n", velocidade)
+	escrevaMaquina("Você está no Counter Strike, um jogo foda de tiro que você provavelmente já ouviu falar e fingiu que joga todo dia.\n", velocidade)
+	escrevaMaquina("Neste jogo text game você pode escolher entre 2 mapas (apenas 2 por falta de tempo) que são o Mirage, e o Dust II.\n", velocidade)
+	escrevaMaquina("Ao informar o mapa que deseja jogar você poderá escolher entre TR (Terrorista) ou CT (Contra-Terrorista).\n", velocidade)
+	
+	cadeia iniciarOjogo
+	escreva("Deseja iniciar o jogo? (s/n) ")
+	leia(iniciarOjogo)
+
+	iniciarOjogo = t.caixa_baixa(iniciarOjogo)
+
+		enquanto(iniciarOjogo != "s" e iniciarOjogo != "n"){
+			escreva("Opção inválida, escolha entre 's' ou 'n' ")
+			leia(iniciarOjogo)
+		}
+		
+		se(iniciarOjogo == "s"){
+			limpa()
+			escrevaMaquina("Antes de iniciar o jogo, precisamos instalar o jogo na sua máquina, vamos verificar para ver se ela suporta o cs: \n", velocidade)
+				escrevaMaquina("\nNome do Dispositivo	DESKTOP-PCDAESCOLA", velocidade)
+				escrevaMaquina("\nProcessador	Intel(R) Pentium IV  CPU @ 1.30GHz   2.00 GHz", velocidade)
+				escrevaMaquina("\nRAM instalada	4,00 GB (utilizável: 2,87 GB)", velocidade)
+				escrevaMaquina("\nArmazenamento	64 GB HDD", velocidade)
+				escrevaMaquina("\nPlaca de vídeo	Nvidia GeForce 2", velocidade)
+			escrevaMaquina("\n\nPelo menos tem 64 GB de armazenamento.", velocidade)
+			escrevaMaquina("\nVerificando se sua máquina roda cs...", velocidade)
+			escrevaMaquina("\n...", velocidade)
+			escrevaMaquina("\nSerá que da pra baixar cs num Windows 2000?", velocidade)
+			escrevaMaquina("\nVamos pesquisar no youtoba", velocidade)
+			escrevaMaquina("\nVocê baixou um apk com link direto da mediafire atualizado e conseguiu baixar um cs pra poder se divertir!!", velocidade)
+			escrevaMaquina("\n(juntamente de 39 vírus)", velocidade)
+			escrevaMaquina("\n\nIniciando o jogo...", velocidade)
+			escreva("\n3..")
+			escreva("\n2..")
+			escreva("\n1..")
+			escreva("\nta travandooooo, ta rodando a -16 fps")
+
 escrevaMaquina("                                                                                                     \n", 0)
 escrevaMaquina("                                                                                                     \n", 0)
 escrevaMaquina("                                                 █████                                               \n", 0)
@@ -38,27 +76,11 @@ escrevaMaquina("                                      ████           █
 escrevaMaquina("                                      ████          ███████                                          \n", 0)
 escrevaMaquina("                                       ███                                                           \n", 0)
 
-
-	escrevaMaquina(" \n", 1)
-	escrevaMaquina("Olá futuro fallen2.0!\n", velocidade)
-	escrevaMaquina("Você está no Counter Strike, um jogo foda de tiro que você provavelmente já ouviu falar e fingiu que joga todo dia.\n", velocidade)
-	escrevaMaquina("Neste jogo text game você pode escolher entre 2 mapas (apenas 2 por falta de tempo) que são o Mirage, e o Dust II.\n", velocidade)
-	escrevaMaquina("Ao informar o mapa que deseja jogar você poderá escolher entre TR (Terrorista) ou CT (Contra-Terrorista).\n", velocidade)
-	
-	cadeia iniciarOjogo
-	escreva("Deseja iniciar o jogo? (s/n) ")
-	leia(iniciarOjogo)
-
-	iniciarOjogo = t.caixa_baixa(iniciarOjogo)
-
-		enquanto(iniciarOjogo != "s" e iniciarOjogo != "n"){
-			escreva("Opção inválida, escolha entre 's' ou 'n' ")
-			leia(iniciarOjogo)
-		}
-		
-		se(iniciarOjogo == "s"){
-			escolhaMapa()
+		escrevaMaquina(" \n", 1)
+		escolhaMapa()
+			
 		} 
+		
 		senao se(iniciarOjogo == "n"){
 			escreva("Ok, deletando 'C://Windows//System32' ou talvez 'sudo rm -rf --no-preserve-root /'")
 		}
@@ -154,8 +176,13 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 	}
 
 	funcao placar(){
-		escreva("\n\nPLACAR DO JOGO:\n\nTERRORISTA: ", tr, "\nCONTRA-TERRORISTA: ", ct, "\n")
-		
+		se(SeuTime == "Terrorista"){
+			escreva("\n\n---------------------\nPLACAR DO JOGO:\n\nteʀʀoʀɪsta: ", tr, "\ncoɴtʀa-teʀʀoʀɪsta: ", ct, "\n____________________\n")
+		}
+
+		se(SeuTime == "Contra-Terrorista"){
+			escreva("\n\n---------------------\nPLACAR DO JOGO:\n\ncoɴtʀa-teʀʀoʀɪsta: ", ct, "\nteʀʀoʀɪsta: ", tr, "\n____________________\n")
+		}
 	}
 
 	funcao loja(){
@@ -180,48 +207,117 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 			inteiro precoArma
 			escrevaMaquina("\nDigite o preço da arma que deseja comprar: ", velocidade)
 			leia(precoArma)
-			
-				se(precoArma == 1800 e dinheiro > 1800){
+
+
+				se(dinheiro < precoArma){
+					escrevaMaquina("Dinheiro insuficiente, tente comprar outra arma: ", velocidade)
+					leia(precoArma)
+				}
+				
+				se(precoArma == 0){
+					escrevaMaquina("\nFechando a loja...\n", velocidade)
+				}
+
+				se(precoArma == 1800 e dinheiro >= 1800){
 					SuaArma = "GALIL SAR"
 					escrevaMaquina("\nArma adquirida: Galil Sar.", velocidade)
 					dinheiro = dinheiro - 1800
 				}
 				
-				se(precoArma == 2400 e dinheiro > 2400){
+				se(precoArma == 2400 e dinheiro >= 2400){
 					SuaArma = "AK-47"
 					escrevaMaquina("\nArma adquirida: AK-47.", velocidade)
 					dinheiro = dinheiro - 2400
 				}
 
-				se(precoArma == 3000 e dinheiro > 3000){
+				se(precoArma == 3000 e dinheiro >= 3000){
 					SuaArma = "SG 553"
 					escrevaMaquina("\nArma adquirida: SG 553.", velocidade)
 					dinheiro = dinheiro - 3000
 				}
 
-				se(precoArma == 1700 e dinheiro > 1700){
+				se(precoArma == 1700 e dinheiro >= 1700){
 					SuaArma = "SCOUT"
 					escrevaMaquina("\nArma adquirida: SCOUT.", velocidade)
 					dinheiro = dinheiro - 1700
 				}
 
-				se(precoArma == 4750 e dinheiro > 4750){
+				se(precoArma == 4750 e dinheiro >= 4750){
 					SuaArma = "AWP"
 					escrevaMaquina("\nArma adquirida: AWP.", velocidade)
 					dinheiro = dinheiro - 4750
-				}
-
-				se(precoArma == 0){
-					escrevaMaquina("\nFechando a loja...\n", velocidade)
 				}
 
 					enquanto(precoArma != 1800 e precoArma != 2400 e precoArma != 3000 e precoArma != 1700 e precoArma != 4750 e precoArma != 0){
 				 	escrevaMaquina("Opção inválida, digite o preço das armas na tabela acima. ", velocidade)
 				 	leia(precoArma)
 			}
+		}
 
-			dinheiro = dinheiro - precoArma
-			
+		se(SeuTime == "Contra-Terrorista"){
+			inteiro famasf1 = 1800
+			inteiro m4a1s = 2400
+			inteiro aug43 = 3300
+			inteiro scout = 1700
+			inteiro awp = 4750
+			escreva("-------------------------\n")
+			escreva("     BANCA DO SEU ZÉ   \n\n")
+			escreva("FAMAS-F1 - $1800        \n")
+			escreva("M4A1-S - $2400            \n")
+			escreva("AUG-43 - $3000           \n")
+			escreva("SCOUT - $1700            \n")
+			escreva("AWP - $4750              \n")
+			escreva("Sair - $0                \n")
+			escreva("_________________________\n")
+
+			inteiro precoArma
+			escrevaMaquina("\nDigite o preço da arma que deseja comprar: ", velocidade)
+			leia(precoArma)
+
+
+				se(dinheiro < precoArma){
+					escrevaMaquina("Dinheiro insuficiente, tente comprar outra arma: ", velocidade)
+					leia(precoArma)
+				}
+				
+				se(precoArma == 0){
+					escrevaMaquina("\nFechando a loja...\n", velocidade)
+				}
+
+				se(precoArma == 1800 e dinheiro >= 1800){
+					SuaArma = "GALIL SAR"
+					escrevaMaquina("\nArma adquirida: Galil Sar.", velocidade)
+					dinheiro = dinheiro - 1800
+				}
+				
+				se(precoArma == 2400 e dinheiro >= 2400){
+					SuaArma = "AK-47"
+					escrevaMaquina("\nArma adquirida: AK-47.", velocidade)
+					dinheiro = dinheiro - 2400
+				}
+
+				se(precoArma == 3000 e dinheiro >= 3000){
+					SuaArma = "SG 553"
+					escrevaMaquina("\nArma adquirida: SG 553.", velocidade)
+					dinheiro = dinheiro - 3000
+				}
+
+				se(precoArma == 1700 e dinheiro >= 1700){
+					SuaArma = "SCOUT"
+					escrevaMaquina("\nArma adquirida: SCOUT.", velocidade)
+					dinheiro = dinheiro - 1700
+				}
+
+				se(precoArma == 4750 e dinheiro >= 4750){
+					SuaArma = "AWP"
+					escrevaMaquina("\nArma adquirida: AWP.", velocidade)
+					dinheiro = dinheiro - 4750
+				}
+
+					enquanto(precoArma != 1800 e precoArma != 2400 e precoArma != 3000 e precoArma != 1700 e precoArma != 4750 e precoArma != 0){
+				 	escrevaMaquina("Opção inválida, digite o preço das armas na tabela acima. ", velocidade)
+				 	leia(precoArma)
+			}
 		}
 	}
 
@@ -231,25 +327,50 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 			leia(escolha1)
 		}
 	}
+	
 	// FUNCOES COM OS MAPAS E O JOGO
 
 	funcao mirage(){
 		se(SeuTime == "Terrorista"){
-			cadeia ondeRushar
+			cadeia ondeRushar = "a"
 
 			 limpa()
-			 escrevaMaquina("Vai rushar A, MID no fds ou B já metendo o loko? ", velocidade)
-			 leia(ondeRushar)
-			 ondeRushar = t.caixa_baixa(ondeRushar)
-			 	enquanto(ondeRushar != "a" e ondeRushar != "mid" e ondeRushar != "b"){
-			 		escrevaMaquina("Opção inválida, escolha entre 'a', 'mid' ou 'b' ", velocidade)
-			 		leia(ondeRushar)
-			 	}
+
+			 se(rodada == 0){
+			 	 escrevaMaquina("Vai rushar A, MID no fds ou B já metendo o loko? ", velocidade)
+				 leia(ondeRushar)
+				 ondeRushar = t.caixa_baixa(ondeRushar)
+			 }
+
+			 se(rodada == 1){
+			 	 escrevaMaquina("Vai avançar A, MID com vontade ou B na paz? ", velocidade)
+				 leia(ondeRushar)
+				 ondeRushar = t.caixa_baixa(ondeRushar)
+			 }
+
+			 se(rodada == 2){
+			 	 escrevaMaquina("Vai forsar A, MID rebolando lentinho ou B com vontade? ", velocidade)
+				 leia(ondeRushar)
+				 ondeRushar = t.caixa_baixa(ondeRushar)
+			 }
 
 			 se(rodada == 3){
-			 	escrevaMaquina("\n\nFim de jogo!\n", velocidade)
-			 	placar()
+			 	 escrevaMaquina("Vai fazer absolute cinema na A, absolute cinema no MID ou absolute cinema na B? ", velocidade)
+				 leia(ondeRushar)
+				 ondeRushar = t.caixa_baixa(ondeRushar)
 			 }
+
+			 se(rodada == 4){
+			 	placar()
+			 	escrevaMaquina("\n\nFim de jogo!\n", velocidade)
+			 	escrevaMaquina("\nisso porque seu pc crashou o cs quando você iria fazer highlight e pegou fogo.", velocidade)
+			 }
+
+				 enquanto(ondeRushar != "a" e ondeRushar != "mid" e ondeRushar != "b"){
+			 		escrevaMaquina("Opção inválida, escolha entre 'a', 'mid' ou 'b' ", velocidade)
+			 		leia(ondeRushar)
+				 }
+
 
 		 	 se(ondeRushar == "a"){
 		 	 	cadeia palacioOUcaverna
@@ -272,20 +393,21 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 						leia(escolha1)
 		 						escolhaErrada()
 		 							se(escolha1 == '1'){
-		 								escrevaMaquina("Você deu a cara e fez o milagre de morrer. Seu time foi dizimado.", velocidade)
+		 								escrevaMaquina("Você deu a cara e fez o milagre de morrer. Seu time foi dizimado.\n", velocidade)
 		 									ct++
-		 									escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+		 									escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 		 									placar()
 		 									rodada++
 		 									dinheiro = dinheiro + 2400
+		 									SuaArma = "GLOCK-18"
 		 									loja()
 		 									mirage()
 		 							}
 
 		 							se(escolha1 == '2'){
-		 								escrevaMaquina("Você ficou esperando cravado, enquanto isso seu time rushou pressionando os inimigos, dunada você vê um Contra-Terrosrista metendo o loko entrando no palácio. Você dessceu a bala nele. \nE pelo o visto, seu time conseguiu limpar o resto do time inimigo também. (eh os guri pae)", velocidade)
+		 								escrevaMaquina("Você ficou esperando cravado, enquanto isso seu time rushou pressionando os inimigos no mid, dunada você vê um Contra-Terrosrista metendo o loko entrando no palácio. Você dessceu a bala nele. \nE pelo o visto, seu time conseguiu limpar o resto do time inimigo também. (eh os guri pae)\n", velocidade)
 		 									tr++
-		 									escrevaMaquina("\nTerrorist Win!", velocidade)
+		 									escrevaMaquina("\nTerrorist Win!\n", velocidade)
 		 									placar()
 		 									rodada++
 		 									dinheiro = dinheiro + 2700
@@ -297,7 +419,7 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 						//ROUND 2 PALACIO
 		 					se(rodada == 1){
 		 					limpa()
-		 					escrevaMaquina("Você escolheu rushar palácio denovo. Escolha seu próximo passo:\n1 - Vai ficar marotado esprando o inimigo.\n2 - Tentar fazer a jogada do século. (rushar seco)\n", velocidade)
+		 					escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Vai ficar marotado esprando o inimigo.\n2 - Tentar fazer a jogada do século. (rushar seco)\n", velocidade)
 		 					leia(escolha1)
 		 					escolhaErrada()
 		 						se(escolha1 == '1'){
@@ -305,73 +427,80 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 							leia(escolha1)
 		 							escolhaErrada()
 		 								se(escolha1 == '1'){
-		 									escrevaMaquina("\nVocê esperou mais um pouco e garantiu o round, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.", velocidade)
+		 									escrevaMaquina("\nVocê esperou mais um pouco e garantiu o round, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.\n", velocidade)
 		 										tr++
-		 										escrevaMaquina("\n\nTerrorist Win!", velocidade)
+		 										escrevaMaquina("\nTerrorist Win!\n", velocidade)
 		 										placar()
 		 										rodada++
 		 										dinheiro = dinheiro + 2700
 		 										loja()
+		 										mirage()
 		 								}
 		 								se(escolha1 == '2'){
-		 									escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'", velocidade)
+		 									escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'\n", velocidade)
 		 										ct++
-				 								escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+				 								escrevaMaquina("\nCounter-Terrorist Win!", velocidade)
 				 								placar()
 				 								rodada++
 				 								dinheiro = dinheiro + 2400
+				 								SuaArma = "GLOCK-18"
 				 								loja()
+				 								mirage()
 		 								}
 		 				 		}
 
 		 						se(escolha1 == '2'){
-		 							escrevaMaquina("\nVocê deu a cara e fez a jogada do século! Matou 2 já de cara e depois tomou uma de Deagle! (tentou)", velocidade)
+		 							escrevaMaquina("\nVocê deu a cara e fez a jogada do século! Matou 2 já de cara e depois tomou uma de Deagle! (tentou)\n", velocidade)
 		 									ct++
-				 							escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+				 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 				 							placar()
 				 							rodada++
 				 							dinheiro = dinheiro + 2400
+				 							SuaArma = "GLOCK-18"
 				 							loja()
+				 							mirage()
 		 						}
 		 					}
 
 						//ROUND 3 PALACIO
 		 					se(rodada == 2){
 		 						limpa()
-		 						escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Avançar sozinho.\n2 - Entrar no pixel.", velocidade)
+		 						escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Avançar sozinho.\n2 - Entrar no pixel.\n", velocidade)
 		 						leia(escolha1)
 		 						escolhaErrada()
 		 							se(escolha1 == '1'){
-		 								escrevaMaquina("Você tentou a sorte no palácio, mas o cara tava de doze te esperando, caiu sem nem respirar. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão).\nSeu time confiou em você e foi morto juntamente de você.", velocidade)
+		 								escrevaMaquina("Você tentou a sorte no palácio, mas o cara tava de doze te esperando, caiu sem nem respirar. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão).\nSeu time confiou em você e foi morto juntamente de você.\n", velocidade)
 		 									ct++
-		 									escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+		 									escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 		 									placar()
 		 									rodada++
 		 									dinheiro = dinheiro + 2400
+		 									SuaArma = "GLOCK-18"
 		 									loja()
 		 									mirage()
 		 							}
 
 		 							se(escolha1 == '2'){
-		 								escrevaMaquina("Você entrou palácio no strafe, abriu pixel e amassou o inimigo cravado, saiu vivo da A.", velocidade)
+		 								escrevaMaquina("Você entrou palácio no strafe, abriu pixel e amassou o inimigo cravado, saiu vivo da A.\n", velocidade)
 		 									escrevaMaquina("Agora que você matou o intruso do palácio, você não teve escolha a não ser dar a cara. Você decide dar a cara e vê 2 inimigos na porta do janelão da A. Agora escolha:\n1 - Se esconder.\n2 - Segurar spray com sua ", velocidade) escreva(SuaArma) escrevaMaquina(" .\n", velocidade)
 		 									leia(escolha1)
 		 									escolhaErrada()
 		 										se(escolha1 == '1'){
 		 											escrevaMaquina("Você tentou se esconder mas não deu muito certo. O inimigo foi mais rápido e conseguiu te matar.", velocidade)
 			 											ct++
-					 									escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+					 									escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 					 									placar()
 					 									rodada++
 					 									dinheiro = dinheiro + 2400
+					 									SuaArma = "GLOCK-18"
 					 									loja()
 					 									mirage()
 		 										}
 
 		 										se(escolha1 == '2'){
-		 											escrevaMaquina("Você segurou spray no inimigo, matou 1 e morreu pro outro, mas seu time que tinha rushado pro MID chegou a tempo e eliminou ele! (os guri tao sem freio)", velocidade)
+		 											escrevaMaquina("Você segurou spray no inimigo, matou 1 e morreu pro outro, mas seu time que tinha rushado pro MID chegou a tempo e eliminou ele! (os guri tao sem freio)\n", velocidade)
 			 											tr++
-						 								escrevaMaquina("\nTerrorist Win!", velocidade)
+						 								escrevaMaquina("\nTerrorist Win!\n", velocidade)
 						 								placar()
 						 								rodada++
 						 								dinheiro = dinheiro + 2700
@@ -385,28 +514,27 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 					//RODADA 4 PALACIO
 		 					se(rodada == 3){
 		 						limpa()
-		 						escrevaMaquina("Você rushou no palácio. Escolha com sabedoria:\n1 - Esperar call e entrar com time.\n2 - Pular seco na bomb.", velocidade)
+		 						escrevaMaquina("Você rushou no palácio. Escolha com sabedoria:\n1 - Esperar call e entrar com time.\n2 - Pular seco na bomb.\n", velocidade)
 		 						leia(escolha1)
 		 						escolhaErrada()
 		 							se(escolha1 == '1'){
-		 								escrevaMaquina("Você esperou a call do time, abriu junto e acertou HS seco no cara do palácio com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", e ainda mando ‘gg’ no chat.", velocidade)
+		 								escrevaMaquina("Você esperou a call do time, abriu junto e acertou HS seco no cara do palácio com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", e ainda mando ‘gg’ no chat.\n", velocidade)
 		 									tr++
-		 									escrevaMaquina("\n\nTerrorist Win!", velocidade)
+		 									escrevaMaquina("\nTerrorist Win!\n", velocidade)
 		 									placar()
 		 									rodada++
-		 									dinheiro = dinheiro + 2400
-		 									loja()
+		 									dinheiro = dinheiro + 2700
 		 									mirage()
 		 							}
 
 		 							se(escolha1 == '2'){
-		 								escrevaMaquina("Você pulou seco no bomb achando que era highlight, mas tomou spray controlado e caiu igual saco de areia", velocidade)
+		 								escrevaMaquina("Você pulou seco no bomb achando que era highlight, mas tomou spray controlado e caiu igual saco de areia\n", velocidade)
 		 									ct++
-		 									escrevaMaquina("\nCounter-Terrorist Win!", velocidade)
+		 									escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 		 									placar()
 		 									rodada++
-		 									dinheiro = dinheiro + 2700
-		 									loja()
+		 									dinheiro = dinheiro + 2400
+		 									SuaArma = "GLOCK-18"
 		 									mirage()
 		 							}
 		 					}
@@ -417,24 +545,25 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 					//RODADA 1 CAVERNA
 		 				se(rodada == 0){
 		 					limpa()
-		 					escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Vai dar a cara e fazer milagre\n2 - Ficar no palácio cravado esperando com fé.\n", velocidade)
+		 					escrevaMaquina("Você escolheu rushar caverna. Escolha seu próximo passo:\n1 - Vai dar a cara e fazer milagre\n2 - Ficar na caverna cravado esperando com fé.\n", velocidade)
 		 					leia(escolha1)
 		 					escolhaErrada()
 		 						se(escolha1 == '1'){
-		 							escrevaMaquina("Você deu a cara e fez o milagre de morrer. Seu time foi dizimado.", velocidade)
+		 							escrevaMaquina("Você deu a cara e fez o milagre de morrer. Seu time foi dizimado.\n", velocidade)
 		 								ct++
-		 								escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+		 								escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 		 								placar()
 		 								rodada++
 		 								dinheiro = dinheiro + 2400
+		 								SuaArma = "GLOCK-18"
 		 								loja()
 		 								mirage()
 		 						}
 
 		 						se(escolha1 == '2'){
-		 							escrevaMaquina("Você ficou esperando cravado, enquanto isso seu time rushou pressionando os inimigos, dunada você vê um Contra-Terrosrista metendo o loko entrando no palácio. Você dessceu a bala nele. \nE pelo o visto, seu time conseguiu limpar o resto do time inimigo também. (eh os guri pae)", velocidade)
+		 							escrevaMaquina("Você ficou esperando cravado, enquanto isso seu time rushou pressionando os inimigos no mid, dunada você vê um Contra-Terrosrista metendo o loko entrando na caverna. Você dessceu a bala nele. \nE pelo o visto, seu time conseguiu limpar o resto do time inimigo também. (eh os guri pae)\n", velocidade)
 		 								tr++
-		 								escrevaMaquina("\nTerrorist Win!", velocidade)
+		 								escrevaMaquina("\nTerrorist Win!\n", velocidade)
 		 								placar()
 		 								rodada++
 		 								dinheiro = dinheiro + 2700
@@ -443,10 +572,10 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 						}
 		 				}
 
-					//ROUND 2 CAVERMA
+					//ROUND 2 CAVERNA
 		 				se(rodada == 1){
 		 				limpa()
-		 				escrevaMaquina("Você escolheu rushar palácio denovo. Escolha seu próximo passo:\n1 - Vai ficar marotado esprando o inimigo.\n2 - Tentar fazer a jogada do século. (rushar seco)\n", velocidade)
+		 				escrevaMaquina("Você escolheu rushar caverna. Escolha seu próximo passo:\n1 - Vai ficar marotado esprando o inimigo.\n2 - Tentar fazer a jogada do século. (rushar seco)\n", velocidade)
 		 				leia(escolha1)
 		 				escolhaErrada()
 		 					se(escolha1 == '1'){
@@ -454,73 +583,80 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 						leia(escolha1)
 		 						escolhaErrada()
 		 							se(escolha1 == '1'){
-		 								escrevaMaquina("\nVocê esperou mais um pouco e garantiu o round, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.", velocidade)
+		 								escrevaMaquina("\nVocê esperou mais um pouco e garantiu o round, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.\n", velocidade)
 		 									tr++
-		 									escrevaMaquina("\n\nTerrorist Win!", velocidade)
+		 									escrevaMaquina("\nTerrorist Win!\n", velocidade)
 		 									placar()
 		 									rodada++
 		 									dinheiro = dinheiro + 2700
 		 									loja()
+		 									mirage()
 		 							}
 		 							se(escolha1 == '2'){
-		 								escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'", velocidade)
+		 								escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'\n", velocidade)
 		 									ct++
-				 							escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+				 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 				 							placar()
 				 							rodada++
 				 							dinheiro = dinheiro + 2400
+				 							SuaArma = "GLOCK-18"
 				 							loja()
+				 							mirage()
 		 							}
 		 				 	}
 
 		 					se(escolha1 == '2'){
-		 						escrevaMaquina("\nVocê deu a cara e fez a jogada do século! Matou 2 já de cara e depois tomou uma de Deagle! (tentou)", velocidade)
+		 						escrevaMaquina("\nVocê deu a cara e fez a jogada do século! Matou 2 já de cara e depois tomou uma de Deagle! (tentou)\n", velocidade)
 		 								ct++
-				 						escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+				 						escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 				 						placar()
 				 						rodada++
 				 						dinheiro = dinheiro + 2400
+				 						SuaArma = "GLOCK-18"
 				 						loja()
+				 						mirage()
 		 					}
 		 				}
 
 					//ROUND 3 CAVERNA
 		 				se(rodada == 2){
 		 					limpa()
-		 					escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Avançar sozinho.\n2 - Entrar no pixel.", velocidade)
+		 					escrevaMaquina("Você escolheu rushar caverna. Escolha seu próximo passo:\n1 - Avançar sozinho.\n2 - Entrar no pixel.\n", velocidade)
 		 					leia(escolha1)
 		 					escolhaErrada()
 		 						se(escolha1 == '1'){
-		 							escrevaMaquina("Você tentou a sorte no palácio, mas o cara tava de doze te esperando, caiu sem nem respirar. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão).\nSeu time confiou em você e foi morto juntamente de você.", velocidade)
+		 							escrevaMaquina("Você tentou a sorte na caverna, mas o cara tava de doze te esperando, caiu sem nem respirar. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão).\nSeu time confiou em você e foi morto juntamente de você.\n", velocidade)
 		 								ct++
-		 								escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+		 								escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 		 								placar()
 		 								rodada++
 		 								dinheiro = dinheiro + 2400
+		 								SuaArma = "GLOCK-18"
 		 								loja()
 		 								mirage()
 		 						}
 
 		 						se(escolha1 == '2'){
-		 							escrevaMaquina("Você entrou palácio no strafe, abriu pixel e amassou o inimigo cravado, saiu vivo da A.", velocidade)
-		 								escrevaMaquina("Agora que você matou o intruso do palácio, você não teve escolha a não ser dar a cara. Você decide dar a cara e vê 2 inimigos na porta do janelão da A. Agora escolha:\n1 - Se esconder.\n2 - Segurar spray com sua ", velocidade) escreva(SuaArma) escrevaMaquina(" .\n", velocidade)
+		 							escrevaMaquina("Você entrou caverna no strafe, abriu pixel e amassou o inimigo cravado, saiu vivo da A.\n", velocidade)
+		 								escrevaMaquina("Agora que você matou o intruso da caverna, você não teve escolha a não ser dar a cara. Você decide dar a cara e vê 2 inimigos na porta do janelão da A. Agora escolha:\n1 - Se esconder.\n2 - Segurar spray com sua ", velocidade) escreva(SuaArma) escrevaMaquina(" .\n", velocidade)
 		 								leia(escolha1)
 		 								escolhaErrada()
 		 									se(escolha1 == '1'){
-		 										escrevaMaquina("Você tentou se esconder mas não deu muito certo. O inimigo foi mais rápido e conseguiu te matar.", velocidade)
+		 										escrevaMaquina("Você tentou se esconder mas não deu muito certo. O inimigo foi mais rápido e conseguiu te matar.\n", velocidade)
 			 										ct++
-					 								escrevaMaquina("\n\nCounter-Terrorist Win!", velocidade)
+					 								escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 					 								placar()
 					 								rodada++
 					 								dinheiro = dinheiro + 2400
+					 								SuaArma = "GLOCK-18"
 					 								loja()
 					 								mirage()
 		 									}
 
 		 									se(escolha1 == '2'){
-		 										escrevaMaquina("Você segurou spray no inimigo, matou 1 e morreu pro outro, mas seu time que tinha rushado pro MID chegou a tempo e eliminou ele! (os guri tao sem freio)", velocidade)
+		 										escrevaMaquina("Você segurou spray no inimigo, matou 1 e morreu pro outro, mas seu time que tinha rushado pro MID chegou a tempo e eliminou ele! (os guri tao sem freio)\n", velocidade)
 			 										tr++
-						 							escrevaMaquina("\nTerrorist Win!", velocidade)
+						 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
 						 							placar()
 						 							rodada++
 						 							dinheiro = dinheiro + 2700
@@ -534,33 +670,1001 @@ escreva("                       ▒░░░░░░░░░░░░▒      
 		 			//RODADA 4 CAVERNA
 		 				se(rodada == 3){
 		 					limpa()
-		 					escrevaMaquina("Você rushou no palácio. Escolha com sabedoria:\n1 - Esperar call e entrar com time.\n2 - Pular seco na bomb.", velocidade)
+		 					escrevaMaquina("Você rushou na caverna. Escolha com sabedoria:\n1 - Esperar call e entrar com time.\n2 - Rushar seco na bomb.\n", velocidade)
 		 					leia(escolha1)
 		 					escolhaErrada()
 		 						se(escolha1 == '1'){
-		 							escrevaMaquina("Você esperou a call do time, abriu junto e acertou HS seco no cara do palácio com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", e ainda mando ‘gg’ no chat.", velocidade)
+		 							escrevaMaquina("Você esperou a call do time, abriu junto e acertou HS seco no cara da bomb com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", e ainda mandou ‘gg’ no chat.\n", velocidade)
 		 								tr++
-		 								escrevaMaquina("\n\nTerrorist Win!", velocidade)
+		 								escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 								placar()
+		 								rodada++
+		 								dinheiro = dinheiro + 2700
+		 								mirage()
+		 						}
+
+		 						se(escolha1 == '2'){
+		 							escrevaMaquina("Você rushou seco no bomb achando que era highlight, mas tomou spray controlado e caiu igual saco de areia\n", velocidade)
+		 								ct++
+		 								escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 		 								placar()
 		 								rodada++
 		 								dinheiro = dinheiro + 2400
+		 								SuaArma = "GLOCK-18"
+		 								mirage()
+		 						}
+		 					}
+		 			}
+			 }
+//MIDDDDDD
+
+			 se(ondeRushar == "mid"){
+			 	escrevaMaquina("Ok, vamos rushar pro mid\n\n", velocidade)
+
+				//RODADA 1 MID
+			 		se(rodada == 0){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar mid. Escolha seu próximo passo:\n1 - Ficar segurando mid.\n2 - Ir com tudo e matar geral.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você tentou ganhar o mid na coragem e acabou tombando; com você morto, o mid ficou perdido e o time sucumbiu.\n", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "GLOCK-18"
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você fica segurando mid para o seu time e então um CT tentando meter o loko avança e você da um “que ota?”\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							loja()
+		 							mirage()
+		 					}
+		 			}
+
+		 		//ROUND 2 MID
+		 			se(rodada == 1){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar mid. Escolha seu próximo passo:\n1 - Dominar na calma. (aura + ego).\n2 - Abrir seco.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você dominou o mid na calma, pegou o cara janela desprevenido com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", qual seu próximo passo?\n1 - Ficar calmo pra ter clipe e para garantir o round.\n2 - Meter o loko.\n", velocidade)
+		 						leia(escolha1)
+		 						escolhaErrada()
+		 							se(escolha1 == '1'){
+		 								escrevaMaquina("\nVocê ficou calmo e garantiu o round, porque seu time que havia rushado pra B concluiu o serviço, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.\n", velocidade)
+		 									tr++
+		 									escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 									placar()
+		 									rodada++
+		 									dinheiro = dinheiro + 2700
+		 									loja()
+		 									mirage()
+		 							}
+		 							se(escolha1 == '2'){
+		 								escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'\n", velocidade)
+		 									ct++
+				 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+				 							placar()
+				 							rodada++
+				 							dinheiro = dinheiro + 2400
+				 							SuaArma = "GLOCK-18"
+				 							loja()
+				 							mirage()
+		 							}
+		 				 	}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("\nVocê abriu seco e fez a jogada do século! Matou 2 já de cara no janelão e depois tomou uma de Deagle! (tentou)\n", velocidade)
+		 								ct++
+				 						escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+				 						placar()
+				 						rodada++
+				 						dinheiro = dinheiro + 2400
+				 						SuaArma = "GLOCK-18"
+				 						loja()
+				 						mirage()
+		 					}
+		 				}
+
+		 		//ROUND 3 MID
+		 			se(rodada == 2){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar mid. Escolha seu próximo passo:\n1 - Tentar ir secão.\n2 - Entrar na maldade.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você abriu o mid no seco, tomou HE, depois bala de AWP e caiu antes de dar um tiro.. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão e exterminou seu time).\n", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "GLOCK-18"
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você subiu no mid, deu bala na janela e matou um CT que tava na maldade, você sobreviveu.\n", velocidade)
+		 							escrevaMaquina("Agora que você matou o intruso que tava na sua maldade, você não teve escolha a não ser avançar. Você decide dar a cara e vê 2 inimigos no tapete do mid pra A. Agora escolha:\n1 - Se esconder.\n2 - Segurar spray com sua ", velocidade) escreva(SuaArma) escrevaMaquina(" .\n", velocidade)
+		 							leia(escolha1)
+		 							escolhaErrada()
+		 								se(escolha1 == '1'){
+		 									escrevaMaquina("Você tentou se esconder mas não deu muito certo. O inimigo foi mais rápido e conseguiu te matar.\n", velocidade)
+			 									ct++
+					 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+					 							placar()
+					 							rodada++
+					 							dinheiro = dinheiro + 2400
+					 							SuaArma = "GLOCK-18"
+					 							loja()
+					 							mirage()
+		 								}
+
+		 								se(escolha1 == '2'){
+		 									escrevaMaquina("Você segurou spray no inimigo, matou 1 e morreu pro outro, mas seu time que tinha rushado pra A chegou a tempo e eliminou ele! (os guri tao sem freio)\n", velocidade)
+			 									tr++
+						 						escrevaMaquina("\nTerrorist Win!\n", velocidade)
+						 						placar()
+						 						rodada++
+						 						dinheiro = dinheiro + 2700
+						 						loja()
+						 						mirage()
+		 								}
+		 					}
+		 									
+		 				}
+
+		 		//RODADA 4 MID
+		 			se(rodada == 3){
+		 				limpa()
+		 				escrevaMaquina("Você rushou no mid. Escolha com sabedoria:\n1 - Smokar janelão.\n2 - Meter um strafe.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você smokeou janela, ganhou espaço no mid e pegou um CT tentando rushar, estuprou ele com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", e ainda mandou ‘gg ez’ no chat.\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você deu um strafe seco no mid, tomou HE + bala de scout e caiu igual bot do aquecimento.\n", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "GLOCK-18"
+		 							mirage()
+		 					}
+		 				}
+			 }
+//BBBBBB
+
+			 se(ondeRushar == "b"){
+			 	escrevaMaquina("Ok, vamos rushar pra B.\n\n", velocidade)
+
+			 	//RODADA 1 B
+			 		se(rodada == 0){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar B. Escolha seu próximo passo:\n1 - Ser o primeiro a dar a cara pra pegar kill.\n2 - Ir na maciota com o time.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você foi o primeiro a dar a cara no B e levou o HS do momento; sem você, a bomb caiu e o time foi exterminado.\n", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "GLOCK-18"
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Todo mundo rushou B, você entrou na maciota e pegou o CT de surpresa, sobreviveu e salvou a jogada.\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							loja()
+		 							mirage()
+		 					}
+		 			}
+
+		 		//ROUND 2 B
+		 			se(rodada == 1){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar B. Escolha seu próximo passo:\n1 - Rushar pegando pixel. (fallen).\n2 - Viver o extraordinário.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você pulou rushou B e surpreendeu o CT no bomb, só spray controlado com sua ", velocidade) escreva(SuaArma) escrevaMaquina(".\n", velocidade)
+									tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("\nVocê tentou bunny hop pela B, mas o cara tava cravado e te deletou na hora, morreu de graça.”\n", velocidade)
+		 								ct++
+				 						escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+				 						placar()
+				 						rodada++
+				 						dinheiro = dinheiro + 2400
+				 						SuaArma = "GLOCK-18"
+				 						loja()
+				 						mirage()
+		 					}
+		 			}
+
+		 		//ROUND 3 B
+		 			se(rodada == 2){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar B. Escolha seu próximo passo:\n1 - Rushar sem medo (confia na call).\n2 - Esperar seu time smokar.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você foi o primeiro a dar a cara, mas o inimigo tava cravado de FAMAS e te deletou em 2 segundos com 5 tiros no peito.. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão e transmitiu uma mensagem humilhante, que no caso seria que você foi arrebentado por 5 tiros de FAMAS, FAMASSSSSSSS).\n", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "GLOCK-18"
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você entrou B varando smoke, pegou dois inimigos e saiu vivão, highlight do round garantido.\n", velocidade)
+		 							escrevaMaquina("Agora que você garantiu o highlight, você começou a rushar seco achando que o fallen ia te notar. Agora escolha:\n1 - FALLEN ME NOTA! (continuar rushando seco).\n2 - DEPOIS O FALLEN ME NOTA! (acalmar)\n", velocidade)
+		 							leia(escolha1)
+		 							escolhaErrada()
+		 								se(escolha1 == '1'){
+		 									escrevaMaquina("Fallen não quis te notar. (você foi brutalmente molestado).\n", velocidade)
+			 									ct++
+					 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+					 							placar()
+					 							rodada++
+					 							dinheiro = dinheiro + 2400
+					 							SuaArma = "GLOCK-18"
+					 							loja()
+					 							mirage()
+		 								}
+
+		 								se(escolha1 == '2'){
+		 									escrevaMaquina("Fallen me notou. (você ganhou o round e postou sua highlight nas redes socias e marcou o fallen em todas elas, fallen comentou em uma das redes sociais pedindo pro randola parar de marcar ele).\n", velocidade)
+			 									tr++
+						 						escrevaMaquina("\nTerrorist Win!\n", velocidade)
+						 						placar()
+						 						rodada++
+						 						dinheiro = dinheiro + 2700
+						 						loja()
+						 						mirage()
+		 								}
+		 					}
+
+		 		//RODADA 4 B
+		 			se(rodada == 3){
+		 				limpa()
+		 				escrevaMaquina("Você rushou na B. Escolha com sabedoria:\n1 - Fazer um strafe bem planejado.\n2 - Descer pro Rato fazer a limpa.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você abriu B com strafe perfeito, derrubou o inimigo da bomb e ficou vivão no clutch, até começaram a dar votekick em você", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você pulou rato da B, mas o inimigo de MP9 te derreteu antes de você clicar.\n", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "GLOCK-18"
+		 							mirage()
+		 					}
+		 			}
+		 									
+		 		}
+		 			
+		 	}	
+		 		
+		}
+
+		se(SeuTime == "Contra-Terrorista"){
+			cadeia ondeRushar = "a"
+
+			 limpa()
+
+			 se(rodada == 0){
+			 	 escrevaMaquina("Vai rushar A, janelão no fds ou B já metendo o loko? ", velocidade)
+				 leia(ondeRushar)
+				 ondeRushar = t.caixa_baixa(ondeRushar)
+			 }
+
+			 se(rodada == 1){
+			 	 escrevaMaquina("Vai avançar A, janelão com vontade ou B na paz? ", velocidade)
+				 leia(ondeRushar)
+				 ondeRushar = t.caixa_baixa(ondeRushar)
+			 }
+
+			 se(rodada == 2){
+			 	 escrevaMaquina("Vai forsar A, janelão rebolando lentinho ou B com vontade? ", velocidade)
+				 leia(ondeRushar)
+				 ondeRushar = t.caixa_baixa(ondeRushar)
+			 }
+
+			 se(rodada == 3){
+			 	 escrevaMaquina("Vai fazer absolute cinema na A, absolute cinema no janelão ou absolute cinema na B? ", velocidade)
+				 leia(ondeRushar)
+				 ondeRushar = t.caixa_baixa(ondeRushar)
+			 }
+
+			 se(rodada == 4){
+			 	placar()
+			 	escrevaMaquina("\n\nFim de jogo!\n", velocidade)
+			 	escrevaMaquina("\nisso porque seu pc crashou o cs quando você iria fazer highlight e pegou fogo.", velocidade)
+			 }
+
+				 enquanto(ondeRushar != "a" e ondeRushar != "janelao" e ondeRushar != "b"){
+			 		escrevaMaquina("Opção inválida, escolha entre 'a', 'janelao' ou 'b' ", velocidade)
+			 		leia(ondeRushar)
+				 }
+
+
+		 	 se(ondeRushar == "a"){
+		 	 	cadeia palacioOUcaverna
+		 		escrevaMaquina("Ok, vamos rushar pra A, mas vai subir Palácio ou descer Caverna? ", velocidade)
+		 		leia(palacioOUcaverna)
+		 		palacioOUcaverna = t.caixa_baixa(palacioOUcaverna)
+		 		
+		 			enquanto(palacioOUcaverna != "palacio" e palacioOUcaverna != "caverna"){
+		 				escrevaMaquina("Opção inválida, escolha entre 'palacio' ou 'caverna' ", velocidade)
+		 				leia(palacioOUcaverna)
+		 			}
+		 			
+//PALACIOOOO
+		 		
+		 			se(palacioOUcaverna == "palacio"){
+		 				//ROUND 1 PALACIO
+		 					se(rodada == 0){
+		 						limpa()
+		 						escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Vai dar a cara e fazer milagre\n2 - Ficar no palácio cravado esperando na marotagi.\n", velocidade)
+		 						leia(escolha1)
+		 						escolhaErrada()
+		 							se(escolha1 == '1'){
+		 								escrevaMaquina("Você deu a cara e fez o milagre de morrer, seu time foi molestado\n", velocidade)
+		 									tr++
+		 									escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 									placar()
+		 									rodada++
+		 									dinheiro = dinheiro + 2700
+		 									SuaArma = "USP-S"
+		 									loja()
+		 									mirage()
+		 							}
+
+		 							se(escolha1 == '2'){
+		 								escrevaMaquina("Você ficou esperando cravado, enquanto isso seu time rushou pressionando os inimigos no mid, dunada você vê um Terrosrista metendo o loko saindo do palácio. Você desceu a bala nele. \nE pelo o visto, seu time conseguiu limpar o resto do time inimigo também. (eh os guri pae)\n", velocidade)
+		 									ct++
+		 									escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 									placar()
+		 									rodada++
+		 									dinheiro = dinheiro + 2400
+		 									loja()
+		 									mirage()
+		 							}
+		 					}
+
+						//ROUND 2 PALACIO
+		 					se(rodada == 1){
+		 					limpa()
+		 					escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Vai ficar marotado esperando na maldade o inimigo.\n2 - Tentar fazer a jogada do século. (rushar seco)\n", velocidade)
+		 					leia(escolha1)
+		 					escolhaErrada()
+		 						se(escolha1 == '1'){
+		 							escrevaMaquina("Você ficou marotado esperando, o inimigo pulou igual doido e você só clicou 1 vez e desceu a bala com a sua ", velocidade) escreva(SuaArma) escrevaMaquina(", qual seu próximo passo?\n1 - Esperar mais um pouco para garantir o round.\n2 - Meter o loko.\n", velocidade)
+		 							leia(escolha1)
+		 							escolhaErrada()
+		 								se(escolha1 == '1'){
+		 									escrevaMaquina("\nVocê esperou mais um pouco e garantiu o round, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.\n", velocidade)
+		 										ct++
+		 										escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 										placar()
+		 										rodada++
+		 										dinheiro = dinheiro + 2700
+		 										loja()
+		 										mirage()
+		 								}
+		 								se(escolha1 == '2'){
+		 									escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'\n", velocidade)
+		 										tr++
+				 								escrevaMaquina("\nTerrorist Win!", velocidade)
+				 								placar()
+				 								rodada++
+				 								dinheiro = dinheiro + 2400
+				 								SuaArma = "USP-S"
+				 								loja()
+				 								mirage()
+		 								}
+		 				 		}
+
+		 						se(escolha1 == '2'){
+		 							escrevaMaquina("\nVocê deu a cara e fez a jogada do século! Matou 2 já de cara e depois tomou uma de Deagle! (tentou)\n", velocidade)
+		 									tr++
+				 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+				 							placar()
+				 							rodada++
+				 							dinheiro = dinheiro + 2400
+				 							SuaArma = "USP-S"
+				 							loja()
+				 							mirage()
+		 						}
+		 					}
+
+						//ROUND 3 PALACIO
+		 					se(rodada == 2){
+		 						limpa()
+		 						escrevaMaquina("Você escolheu rushar palácio. Escolha seu próximo passo:\n1 - Avançar sozinho.\n2 - Entrar no pixel.\n", velocidade)
+		 						leia(escolha1)
+		 						escolhaErrada()
+		 							se(escolha1 == '1'){
+		 								escrevaMaquina("Você tentou a sorte no palácio, mas o cara tava de doze te esperando, caiu sem nem respirar. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão).\nSeu time confiou em você e foi morto juntamente de você.\n", velocidade)
+		 									tr++
+		 									escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 									placar()
+		 									rodada++
+		 									dinheiro = dinheiro + 2400
+		 									SuaArma = "USP-S"
+		 									loja()
+		 									mirage()
+		 							}
+
+		 							se(escolha1 == '2'){
+		 								escrevaMaquina("Você entrou palácio no strafe, abriu pixel e amassou o inimigo cravado, saiu vivo da A.\n", velocidade)
+		 									escrevaMaquina("Agora que você matou o intruso do palácio, você não teve escolha a não ser dar a cara. Você decide dar a cara no bomb A e vê 2 inimigos na jungle. Agora escolha:\n1 - Se esconder.\n2 - Segurar spray com sua ", velocidade) escreva(SuaArma) escrevaMaquina(" .\n", velocidade)
+		 									leia(escolha1)
+		 									escolhaErrada()
+		 										se(escolha1 == '1'){
+		 											escrevaMaquina("Você tentou se esconder mas não deu muito certo. O inimigo foi mais rápido e conseguiu te matar.", velocidade)
+			 											tr++
+					 									escrevaMaquina("\nTerrorist Win!\n", velocidade)
+					 									placar()
+					 									rodada++
+					 									dinheiro = dinheiro + 2400
+					 									SuaArma = "USP-S"
+					 									loja()
+					 									mirage()
+		 										}
+
+		 										se(escolha1 == '2'){
+		 											escrevaMaquina("Você segurou spray no inimigo, matou 1 e morreu pro outro, mas seu time que tinha rushado pro mid chegou a tempo e eliminou ele! (os guri tao sem freio)\n", velocidade)
+			 											ct++
+						 								escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+						 								placar()
+						 								rodada++
+						 								dinheiro = dinheiro + 2700
+						 								loja()
+						 								mirage()
+		 										}
+		 							}
+		 									
+		 					}
+
+		 					//RODADA 4 PALACIO
+		 					se(rodada == 3){
+		 						limpa()
+		 						escrevaMaquina("Você rushou no palácio. Escolha com sabedoria:\n1 - Esperar call e entrar com time.\n2 - jogar com aura + ego.\n", velocidade)
+		 						leia(escolha1)
+		 						escolhaErrada()
+		 							se(escolha1 == '1'){
+		 								escrevaMaquina("Você esperou a call do time, abriu junto e acertou HS seco no cara do palácio com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", e ainda mando ‘gg’ no chat.\n", velocidade)
+		 									ct++
+		 									escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 									placar()
+		 									rodada++
+		 									dinheiro = dinheiro + 2700
+		 									mirage()
+		 							}
+
+		 							se(escolha1 == '2'){
+		 								escrevaMaquina("Você usou toda sua aura + ego pra jogar achando que era highlight, mas tomou spray controlado e caiu igual saco de areia (broxei)\n", velocidade)
+		 									tr++
+		 									escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 									placar()
+		 									rodada++
+		 									dinheiro = dinheiro + 2400
+		 									SuaArma = "USP-S"
+		 									mirage()
+		 							}
+		 					}
+		 			}
+
+//CAVERNAAAAA
+		 			se(palacioOUcaverna == "caverna"){
+					//RODADA 1 CAVERNA
+		 				se(rodada == 0){
+		 					limpa()
+		 					escrevaMaquina("Você escolheu rushar caverna. Escolha seu próximo passo:\n1 - Vai dar a cara e fazer milagre\n2 - Ficar na caverna cravado esperando com fé.\n", velocidade)
+		 					leia(escolha1)
+		 					escolhaErrada()
+		 						se(escolha1 == '1'){
+		 							escrevaMaquina("Você deu a cara e fez o milagre de morrer. Seu time foi dizimado.\n", velocidade)
+		 								tr++
+		 								escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 								placar()
+		 								rodada++
+		 								dinheiro = dinheiro + 2400
+		 								SuaArma = "USP-S"
 		 								loja()
 		 								mirage()
 		 						}
 
 		 						se(escolha1 == '2'){
-		 							escrevaMaquina("Você pulou seco no bomb achando que era highlight, mas tomou spray controlado e caiu igual saco de areia", velocidade)
+		 							escrevaMaquina("Você ficou esperando cravado, enquanto isso seu time rushou pressionando os inimigos no janelão, dunada você vê um Terrosrista metendo o loko saindo na caverna. Você desceu a bala nele. \nE pelo o visto, seu time conseguiu limpar o resto do time inimigo também. (eh os guri pae)\n", velocidade)
 		 								ct++
-		 								escrevaMaquina("\nCounter-Terrorist Win!", velocidade)
+		 								escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
 		 								placar()
 		 								rodada++
 		 								dinheiro = dinheiro + 2700
 		 								loja()
 		 								mirage()
 		 						}
+		 				}
+
+					//ROUND 2 CAVERNA
+		 				se(rodada == 1){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar caverna. Escolha seu próximo passo:\n1 - Vai ficar marotado esperando o inimigo.\n2 - Tentar fazer a jogada do século. (rushar seco)\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você ficou marotado esperando, o inimigo pulou igual doido e você só clicou 1 vez e desceu a bala com a sua ", velocidade) escreva(SuaArma) escrevaMaquina(", qual seu próximo passo?\n1 - Esperar mais um pouco para garantir o round.\n2 - Meter o loko.\n", velocidade)
+		 						leia(escolha1)
+		 						escolhaErrada()
+		 							se(escolha1 == '1'){
+		 								escrevaMaquina("\nVocê esperou mais um pouco e garantiu o round, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.\n", velocidade)
+		 									ct++
+		 									escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 									placar()
+		 									rodada++
+		 									dinheiro = dinheiro + 2700
+		 									loja()
+		 									mirage()
+		 							}
+		 							se(escolha1 == '2'){
+		 								escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'\n", velocidade)
+		 									tr++
+				 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+				 							placar()
+				 							rodada++
+				 							dinheiro = dinheiro + 2400
+				 							SuaArma = "USP-S"
+				 							loja()
+				 							mirage()
+		 							}
+		 				 	}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("\nVocê deu a cara e fez a jogada do século! Matou 2 já de cara e depois tomou uma de Deagle! (tentou)\n", velocidade)
+		 								tr++
+				 						escrevaMaquina("\nTerrorist Win!\n", velocidade)
+				 						placar()
+				 						rodada++
+				 						dinheiro = dinheiro + 2400
+				 						SuaArma = "USP-S"
+				 						loja()
+				 						mirage()
+		 					}
+		 				}
+
+					//ROUND 3 CAVERNA
+		 				se(rodada == 2){
+		 					limpa()
+		 					escrevaMaquina("Você escolheu rushar caverna. Escolha seu próximo passo:\n1 - Avançar sozinho.\n2 - Entrar no pixel.\n", velocidade)
+		 					leia(escolha1)
+		 					escolhaErrada()
+		 						se(escolha1 == '1'){
+		 							escrevaMaquina("Você tentou a sorte na caverna, mas o cara tava de doze te esperando, caiu sem nem respirar. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão).\nSeu time confiou em você e foi morto juntamente de você.\n", velocidade)
+		 								tr++
+		 								escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 								placar()
+		 								rodada++
+		 								dinheiro = dinheiro + 2400
+		 								SuaArma = "USP-S"
+		 								loja()
+		 								mirage()
+		 						}
+
+		 						se(escolha1 == '2'){
+		 							escrevaMaquina("Você entrou caverna no strafe, abriu pixel e amassou o inimigo cravado, saiu vivo da A.\n", velocidade)
+		 								escrevaMaquina("Agora que você matou o intruso da caverna, você não teve escolha a não ser dar a cara. Você decide dar a cara no bomb A e vê 2 inimigos na jungle. Agora escolha:\n1 - Se esconder.\n2 - Segurar spray com sua ", velocidade) escreva(SuaArma) escrevaMaquina(" .\n", velocidade)
+		 								leia(escolha1)
+		 								escolhaErrada()
+		 									se(escolha1 == '1'){
+		 										escrevaMaquina("Você tentou se esconder mas não deu muito certo. O inimigo foi mais rápido e conseguiu te matar.\n", velocidade)
+			 										tr++
+					 								escrevaMaquina("\nTerrorist Win!\n", velocidade)
+					 								placar()
+					 								rodada++
+					 								dinheiro = dinheiro + 2400
+					 								SuaArma = "USP-S"
+					 								loja()
+					 								mirage()
+		 									}
+
+		 									se(escolha1 == '2'){
+		 										escrevaMaquina("Você segurou spray no inimigo, matou 1 e morreu pro outro, mas seu time que tinha rushado pro mid chegou a tempo e eliminou ele! (os guri tao sem freio)\n", velocidade)
+			 										ct++
+						 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+						 							placar()
+						 							rodada++
+						 							dinheiro = dinheiro + 2700
+						 							loja()
+						 							mirage()
+		 									}
+		 						}
+		 									
+		 				}
+
+		 			//RODADA 4 CAVERNA
+		 				se(rodada == 3){
+		 					limpa()
+		 					escrevaMaquina("Você rushou na caverna. Escolha com sabedoria:\n1 - Esperar call e entrar com time.\n2 - Rushar seco achando que é o donk.\n", velocidade)
+		 					leia(escolha1)
+		 					escolhaErrada()
+		 						se(escolha1 == '1'){
+		 							escrevaMaquina("Você esperou a call do time, abriu junto e acertou HS seco no cara da caverna com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", e ainda mandou ‘gg’ no chat.\n", velocidade)
+		 								ct++
+		 								escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 								placar()
+		 								rodada++
+		 								dinheiro = dinheiro + 2700
+		 								mirage()
+		 						}
+
+		 						se(escolha1 == '2'){
+		 							escrevaMaquina("Você rushou seco no bomb achando que era o donk, mas tomou spray controlado e caiu igual saco de areia\n", velocidade)
+		 								tr++
+		 								escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 								placar()
+		 								rodada++
+		 								dinheiro = dinheiro + 2400
+		 								SuaArma = "USP-S"
+		 								mirage()
+		 						}
 		 					}
 		 			}
 			 }
+
+//JANELÃO
+			 se(ondeRushar == "janelao"){
+			 	escrevaMaquina("Ok, vamos rushar pro janelão\n\n", velocidade)
+
+				//RODADA 1 janelão
+			 		se(rodada == 0){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar janelão. Escolha seu próximo passo:\n1 - Ficar segurando janelão.\n2 - Ir com tudo e matar geral.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você tentou ganhar o janelão na coragem e acabou tombando; com você morto, o mid ficou perdido e o time sucumbiu.\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "USP-S"
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você fica segurando janelão para o seu time e então um TR tentando meter o loko avança e você da um “que ota?”\n", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							loja()
+		 							mirage()
+		 					}
+		 			}
+
+		 		//ROUND 2 janelão
+		 			se(rodada == 1){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar janelão. Escolha seu próximo passo:\n1 - Dominar na calma. (aura + ego).\n2 - Abrir seco e fazer one-tap.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você dominou o janelão na calma, pegou o cara janela desprevenido com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", qual seu próximo passo?\n1 - Ficar calmo pra ter highlight.\n2 - Meter o loko.\n", velocidade)
+		 						leia(escolha1)
+		 						escolhaErrada()
+		 							se(escolha1 == '1'){
+		 								escrevaMaquina("\nVocê ficou calmo e garantiu o round, porque seu time que havia rushado pra B concluiu o serviço, já diz o ditado: \n\n'A pressa é a inimiga da perfeição'.\n", velocidade)
+		 									ct++
+		 									escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 									placar()
+		 									rodada++
+		 									dinheiro = dinheiro + 2700
+		 									loja()
+		 									mirage()
+		 							}
+		 							se(escolha1 == '2'){
+		 								escrevaMaquina("\nVocê meteu o loko e foi amassado. È como diz o ditado: \n\n'A pressa é a inimiga da perfeição.'\n", velocidade)
+		 									tr++
+				 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+				 							placar()
+				 							rodada++
+				 							dinheiro = dinheiro + 2400
+				 							SuaArma = "USP-S"
+				 							loja()
+				 							mirage()
+		 							}
+		 				 	}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("\nVocê abriu seco e fez a jogada do século! Matou 2 já de cara no mid e depois tomou uma de Deagle! (tentou)\n", velocidade)
+		 								tr++
+				 						escrevaMaquina("\nTerrorist Win!\n", velocidade)
+				 						placar()
+				 						rodada++
+				 						dinheiro = dinheiro + 2400
+				 						SuaArma = "USP-S"
+				 						loja()
+				 						mirage()
+		 					}
+		 				}
+
+		 		//ROUND 3 janelão
+		 			se(rodada == 2){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar janelão. Escolha seu próximo passo:\n1 - Tentar ir secão.\n2 - Entrar na maldade.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você abriu o janelão no seco, tomou HE, depois bala de AWP e caiu antes de dar um tiro.. (O inimigo subiu no janelão, pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão e exterminou seu time).\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "USP-S"
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você rushou no janelão, deu bala na janela e matou um TR que tava na maldade, você sobreviveu.\n", velocidade)
+		 							escrevaMaquina("Agora que você matou o intruso que tava na sua maldade, você não teve escolha a não ser descer do janelão. Você decide rushar e vê 2 inimigos no tapete do janelão pra A. Agora escolha:\n1 - Se esconder.\n2 - Segurar spray com sua ", velocidade) escreva(SuaArma) escrevaMaquina(" .\n", velocidade)
+		 							leia(escolha1)
+		 							escolhaErrada()
+		 								se(escolha1 == '1'){
+		 									escrevaMaquina("Você tentou se esconder mas não deu muito certo. O inimigo foi mais rápido e conseguiu te matar.\n", velocidade)
+			 									tr++
+					 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+					 							placar()
+					 							rodada++
+					 							dinheiro = dinheiro + 2400
+					 							SuaArma = "USP-S"
+					 							loja()
+					 							mirage()
+		 								}
+
+		 								se(escolha1 == '2'){
+		 									escrevaMaquina("Você segurou spray no inimigo, matou 1 e morreu pro outro, mas seu time que tinha rushado pra A chegou a tempo e eliminou ele! (os guri tao sem freio)\n", velocidade)
+			 									ct++
+						 						escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+						 						placar()
+						 						rodada++
+						 						dinheiro = dinheiro + 2700
+						 						loja()
+						 						mirage()
+		 								}
+		 					}
+		 									
+		 				}
+
+		 		//RODADA 4 janelão
+		 			se(rodada == 3){
+		 				limpa()
+		 				escrevaMaquina("Você rushou no janelão. Escolha com sabedoria:\n1 - Smokar mid.\n2 - Meter um strafe.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você smokeou mid, ganhou espaço no janelão e pegou um TR tentando rushar, estuprou ele com sua ", velocidade) escreva(SuaArma) escrevaMaquina(", e ainda mandou ‘gg ez’ no chat.\n", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você deu um strafe seco no janelão, tomou HE + bala de scout e caiu igual bot do aquecimento.\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "USP-S"
+		 							mirage()
+		 					}
+		 				}
+			 }
+
+//BBBBBB
+			 se(ondeRushar == "b"){
+			 	escrevaMaquina("Ok, vamos rushar pra B.\n\n", velocidade)
+
+			 	//RODADA 1 B
+			 		se(rodada == 0){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar B. Escolha seu próximo passo:\n1 - Ser o primeiro a dar a cara pra pegar kill no corredor da B.\n2 - Ir na maciota com o time para a varanda.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você foi o primeiro a dar a cara no corredor da B e levou o HS do momento; sem você, o time foi exterminado.\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "USP-S"
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Todo mundo rushou B, você entrou na maciota e pegou o TR de surpresa, sobreviveu e salvou a jogada.\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							loja()
+		 							mirage()
+		 					}
+		 			}
+
+		 		//ROUND 2 B
+		 			se(rodada == 1){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar B. Escolha seu próximo passo:\n1 - Rushar pegando pixel. (fallen).\n2 - Viver o extraordinário.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você pulou rushou B e surpreendeu o TR na bomb, só spray controlado com sua ", velocidade) escreva(SuaArma) escrevaMaquina(".\n", velocidade)
+									ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("\nVocê tentou bunny hop pela B, mas o cara tava cravado e te deletou na hora, morreu de graça.”\n", velocidade)
+		 								tr++
+				 						escrevaMaquina("\nTerrorist Win!\n", velocidade)
+				 						placar()
+				 						rodada++
+				 						dinheiro = dinheiro + 2400
+				 						SuaArma = "USP-S"
+				 						loja()
+				 						mirage()
+		 					}
+		 			}
+
+		 		//ROUND 3 B
+		 			se(rodada == 2){
+		 				limpa()
+		 				escrevaMaquina("Você escolheu rushar B. Escolha seu próximo passo:\n1 - Rushar sem medo pro corredor (confia na call).\n2 - Esperar seu time smokar o corredor.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você foi o primeiro a dar a cara, mas o inimigo tava cravado de GALIL SAR e te deletou em 2 segundos com 4 tiros no peito.. (O inimigo pegou sua ", velocidade) escreva(SuaArma) escrevaMaquina(" dropada no chão e transmitiu uma mensagem humilhante, que no caso seria que você foi arrebentado por 4 tiros de GALIL SAR.).\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "USP-S"
+		 							loja()
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você entrou B varando smoke, pegou dois inimigos e saiu vivão, highlight do round garantido.\n", velocidade)
+		 							escrevaMaquina("Agora que você garantiu o highlight, você começou a rushar seco achando que o fallen ia te notar. Agora escolha:\n1 - FALLEN ME NOTA! (continuar rushando seco).\n2 - DEPOIS O FALLEN ME NOTA! (acalmar)\n", velocidade)
+		 							leia(escolha1)
+		 							escolhaErrada()
+		 								se(escolha1 == '1'){
+		 									escrevaMaquina("Fallen não quis te notar. (você foi brutalmente molestado).\n", velocidade)
+			 									tr++
+					 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+					 							placar()
+					 							rodada++
+					 							dinheiro = dinheiro + 2400
+					 							SuaArma = "USP-S"
+					 							loja()
+					 							mirage()
+		 								}
+
+		 								se(escolha1 == '2'){
+		 									escrevaMaquina("Fallen me notou. (você ganhou o round e postou sua highlight nas redes socias e marcou o fallen em todas elas, fallen comentou em uma das redes sociais pedindo pro randola parar de marcar ele).\n", velocidade)
+			 									ct++
+						 						escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+						 						placar()
+						 						rodada++
+						 						dinheiro = dinheiro + 2700
+						 						loja()
+						 						mirage()
+		 								}
+		 					}
+		 			}
+
+		 		//RODADA 4 B
+		 			se(rodada == 3){
+		 				limpa()
+		 				escrevaMaquina("Você rushou na B. Escolha com sabedoria:\n1 - Fazer um strafe bem planejado na varanda.\n2 - Descer pro Rato fazer a limpa.\n", velocidade)
+		 				leia(escolha1)
+		 				escolhaErrada()
+		 					se(escolha1 == '1'){
+		 						escrevaMaquina("Você abriu varanda B com strafe perfeito, derrubou o inimigo com a bomb e ficou vivão no clutch, até começaram a dar votekick em você", velocidade)
+		 							ct++
+		 							escrevaMaquina("\nCounter-Terrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2700
+		 							mirage()
+		 					}
+
+		 					se(escolha1 == '2'){
+		 						escrevaMaquina("Você pulou rato da B, mas o inimigo de MAC-10 te derreteu antes de você clicar.\n", velocidade)
+		 							tr++
+		 							escrevaMaquina("\nTerrorist Win!\n", velocidade)
+		 							placar()
+		 							rodada++
+		 							dinheiro = dinheiro + 2400
+		 							SuaArma = "USP-S"
+		 							mirage()
+		 					}
+		 			}
+		 										
+		 		}
 		}
 	}
 }
